@@ -14,6 +14,6 @@
 # define SO_LONG_H
 
 # include <math.h>
-# include "/nfs/homes/apereira/Documents/42cursus_so_long/minilibx-linux/mlx.h"
+# include "mlx_linux/mlx.h"
 
 #endif

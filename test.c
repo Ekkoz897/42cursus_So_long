@@ -20,5 +20,6 @@ int	main(void)
 
 	mlx_ptr = mlx_init();
 	ptr_window = mlx_new_window(mlx_ptr, 500, 600, "FML");
-	mlx_loop(mlx_ptr);
+	if (ptr_window)
+		mlx_loop(mlx_ptr);
 }
