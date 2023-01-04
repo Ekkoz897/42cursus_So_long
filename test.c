@@ -19,7 +19,16 @@ int	main(void)
 	void	*ptr_window;
 
 	mlx_ptr = mlx_init();
+	if (!mlx_ptr)
+		return (1);
 	ptr_window = mlx_new_window(mlx_ptr, 500, 600, "FML");
-	if (ptr_window)
-		mlx_loop(mlx_ptr);
+	if (!ptr_window)
+	{
+		free(ptr_window);
+		return (1);
+	}
+	mlx_loop(mlx_ptr);
+	mlx_destroy_window(mlx_ptr, ptr_window);
+	mlx_destroy_display(mlx_ptr);
+	free(mlx_ptr);
 }
