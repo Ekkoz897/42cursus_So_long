@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:07:46 by apereira         ###   ########.fr       */
+/*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
+/*   Updated: 2023/01/04 17:08:30 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "mlx_linux/mlx.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+int	map_check(int fd, char **argv)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
+	char	*str;
+	char	**map;
+	int		i;
+	int		height;
 
-#endif
+	height = 0;
+	i = 0;
+	while (get_next_line(fd))
+	height++;
+	close(fd);
+	map = malloc(sizeof(char *) * height);
+	fd = open(argv[1], O_RDONLY);
+	while (height > 0)
+	{
+	str = get_next_line(fd);
+	map[i] = str;
+	i++;
+	height--;
+	}
+	return (map);
+}
