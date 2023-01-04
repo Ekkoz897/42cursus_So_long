@@ -6,13 +6,13 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:27:35 by apereira          #+#    #+#             */
-/*   Updated: 2022/11/23 13:01:34 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:24:23 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen2(const char *str)
 {
 	size_t	i;
 

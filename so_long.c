@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:09:31 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:56:12 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	main(int argc, char **argv)
 {
 	t_key	*game;
 
+	if (!(argc == 2))
+		return (0);
 	game = malloc(sizeof(t_key));
 	game_init(game);
 	game->mlx = mlx_init();

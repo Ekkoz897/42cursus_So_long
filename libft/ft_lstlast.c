@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/11/04 14:57:45 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/09 19:50:22 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+/**
+ * It returns the last element of a list.
+ * 
+ * @param lst A pointer to the first link of a list.
+ * 
+ * @return The last element of the list.
+ */
 
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+t_list	*ft_lstlast(t_list *lst)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
-
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}

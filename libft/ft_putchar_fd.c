@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/11/04 14:02:19 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/11 12:01:25 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+/**
+ * Ft_putchar_fd() writes a character to a file descriptor 
+ * (int that points to an open file)
+ * 
+ * @param c the character to print
+ * @param fd file descriptor
+ */
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+void	ft_putchar_fd(char c, int fd)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
-
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	write(fd, &c, 1);
+}

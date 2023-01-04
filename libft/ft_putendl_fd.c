@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/10/24 11:42:06 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/09 19:50:53 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+/**
+ * Write the string s to the file descriptor fd, followed by a newline
+ * 
+ * @param s The string to output.
+ * @param fd file descriptor
+ * 
+ * @return nothing.
+ */
 
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+void	ft_putendl_fd(char *s, int fd)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
+	size_t	i;
 
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	if (!s || fd < 0)
+		return ;
+	i = 0;
+	while (s[i])
+		write(fd, &s[i++], 1);
+	write(fd, "\n", 1);
+}

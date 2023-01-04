@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/11/04 16:14:07 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/09 19:50:19 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+/**
+ * Iterate through a linked list and apply a function to each element
+ * 
+ * @param lst a pointer to the first element of a linked list
+ * @param f a function that takes a void pointer and returns nothing
+ */
 
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
+	t_list	*tmp;
 
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	if (!f || !lst)
+		return ;
+	tmp = lst;
+	while (tmp)
+	{
+		tmp = lst->next;
+		f(lst->content);
+		lst = tmp;
+	}
+}

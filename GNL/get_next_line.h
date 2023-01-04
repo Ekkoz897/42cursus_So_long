@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:25:43 by apereira          #+#    #+#             */
-/*   Updated: 2022/11/23 15:14:13 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:24:26 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		cpy_line_only(char *temp);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *str, int c);
-size_t	ft_strlen(const char *str);
+size_t	ft_strlen2(const char *str);
 char	*ft_cleartemp(char *src, int len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t nmemb, size_t size);

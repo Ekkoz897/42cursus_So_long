@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/10/24 11:42:49 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/17 14:40:02 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+/*
+ * It takes two strings and joins them together using malloc.
+ */
 
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
+	char	*str;
 
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s1, ft_strlen(s1));
+	ft_memcpy(str + ft_strlen(s1), s2, ft_strlen(s2) + 1);
+	str[ft_strlen(str)] = '\0';
+	return (str);
+}

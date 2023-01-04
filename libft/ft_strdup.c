@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/10/24 11:42:44 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/09 19:51:06 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+/**
+ * It copies the string s into a new string g using malloc.
+ */
 
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+char	*ft_strdup(const char *s)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
+	char	*g;
+	int		i;
 
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	i = 0;
+	g = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!g)
+		return (NULL);
+	while (s[i])
+	{
+		g[i] = s[i];
+		i++;
+	}
+	g[i] = '\0';
+	return (g);
+}

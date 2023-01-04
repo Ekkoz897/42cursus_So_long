@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:27:12 by apereira         ###   ########.fr       */
+/*   Created: 2022/10/24 11:42:06 by apereira          #+#    #+#             */
+/*   Updated: 2022/11/14 16:12:08 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "mlx_linux/mlx.h"
-# include "libft/libft.h"
-# include "GNL/get_next_line.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+/**
+ * It sets the first n bytes of the memory area pointed to by str to zero.
+ * 
+ *  str - pointer to the memory area to be filled.
+ *  n   - number of bytes to be zeroed.
+ */
 
-# define MAPA "aaa\aa"
-
-typedef struct s_key
+void	ft_bzero(void *str, size_t n)
 {
-	void	*wdw;
-	void	*mlx;
-}t_key;
+	size_t			i;
+	char			*str1;
 
-typedef struct s_map
-{
-	int	tall;
-	int	large;
-}t_map;
-
-#endif
+	i = 0;
+	str1 = (char *)str;
+	while (i < n)
+		str1[i++] = 0;
+}
