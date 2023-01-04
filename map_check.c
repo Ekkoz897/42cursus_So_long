@@ -45,7 +45,7 @@ int	wall_check(char **map, t_map *map_size)
 	j = ft_strlen(map[0]) - 1;
 	while (i <= j)
 	{
-		if (map[1][i] != '1' || map[map_size->tall - 1][i] != '1')
+		if (map[0][i] != '1' || map[map_size->tall - 1][i] != '1')
 			return (0);
 		i++;
 	}
