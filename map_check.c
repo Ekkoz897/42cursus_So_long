@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-//passa o mapa para uma matris e conta as linhas (altura)
+// passa o mapa para uma matris e conta as linhas (altura)
 char	**map_cpy(int fd, char *argv)
 {
 	char	*str;
@@ -36,6 +36,7 @@ char	**map_cpy(int fd, char *argv)
 	return (map);
 }
 
+// verifica se as bordas do mapa estão ok
 int	wall_check(char **map, t_map *map_size)
 {
 	int	i;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,21 @@
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int	key_press(int key, t_key *game)
 {
-	t_key	*game;
-
-	if (!(argc == 2))
-		return (0);
-	game = malloc(sizeof(t_key));
-	game_init(game);
-	open_wdw(game);
-	mlx_hook(game->wdw, 2, 1L << 0, key_press, &game);
-	mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, &game);
-	mlx_loop(game->mlx);
-	mlx_destroy_window(game->mlx, game->wdw);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	if (key == 65307)
+	{
+		destroy_wdw(key, game);
+		free (game);
+	}
+	if (key == 'w')
+		write(1, "w", 1);
+	else if (key == 'a')
+		write(1, "a", 1);
+	else if (key == 's')
+		write(1, "s", 1);
+	else if (key == 'd' )
+		write(1, "d", 1);
+	return (0);
 }
+

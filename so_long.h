@@ -20,7 +20,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define MAPA "aaa\aa"
+# define WIDTH 500
+# define HEIGHT 600
 
 typedef struct s_key
 {
@@ -33,5 +34,10 @@ typedef struct s_map
 	int	tall;
 	int	large;
 }t_map;
+
+int		key_press(int key, t_key *game);
+int		destroy_wdw(int key, t_key *game);
+void	game_init(t_key	*game);
+int		open_wdw(t_key *game);
 
 #endif
