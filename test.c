@@ -6,22 +6,32 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 13:41:29 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:35:10 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "mlx_linux/mlx.h"
 #include "so_long.h"
-#include <unistd.h>
 
-int	key_press(int key, t_key *wdw_mlx)
+int	destroy_wdw(int key, t_key *game)
 {
-	if (key == 27)
+	if (key)
 	{
-		mlx_destroy_display(wdw_mlx->mlx_ptr);
-		mlx_destroy_image(wdw_mlx->mlx_ptr, wdw_mlx->wdw_ptr);
-		free(wdw_mlx->mlx_ptr);
+		mlx_clear_window(game->mlx, game->wdw);
+		mlx_destroy_window(game->mlx, game->wdw);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		free (game);
+		exit(0);
+	}
+	return (0);
+}
+
+int	key_press(int key, t_key *game)
+{
+	if (key == 65307)
+	{
+		destroy_wdw(key, game);
+		free (game);
 	}
 	if (key == 'w')
 		write(1, "w", 1);
@@ -34,31 +44,35 @@ int	key_press(int key, t_key *wdw_mlx)
 	return (0);
 }
 
-int	key_npress(int key, t_key *wdw_mlx)
+void	game_init(t_key	*game)
 {
-	if (key)
-		wdw_mlx->key_down = 0;
-	return (0);
+	game->mlx = 0;
+	game->wdw = 0;
 }
 
 int	main(void)
 {
-	t_key	*wdw_mlx;
+	t_key	*game;
 
-	wdw_mlx = malloc(sizeof(t_key));
-	wdw_mlx->mlx_ptr = mlx_init();
-	if (!(wdw_mlx->mlx_ptr))
-		return (1);
-	wdw_mlx->wdw_ptr = mlx_new_window(wdw_mlx->mlx_ptr, 500, 600, "FML");
-	if (!(wdw_mlx->wdw_ptr))
+	game = malloc(sizeof(t_key));
+	game_init(game);
+	game->mlx = mlx_init();
+	if (!(game->mlx))
 	{
-		free(wdw_mlx->wdw_ptr);
+		free (game);
 		return (1);
 	}
-	mlx_hook(wdw_mlx->wdw_ptr, 2, 1L << 0, key_press, &wdw_mlx);
-	mlx_hook(wdw_mlx->wdw_ptr, 3, 1L << 1, key_npress, &wdw_mlx);
-	mlx_loop(wdw_mlx->mlx_ptr);
-	mlx_destroy_window(wdw_mlx->mlx_ptr, wdw_mlx->wdw_ptr);
-	mlx_destroy_display(wdw_mlx->mlx_ptr);
-	free(wdw_mlx->mlx_ptr);
+	game->wdw = mlx_new_window(game->mlx, 500, 600, "FML");
+	if (!(game->wdw))
+	{
+		free(game->wdw);
+		free (game);
+		return (1);
+	}
+	mlx_hook(game->wdw, 2, 1L << 0, key_press, &game);
+	mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, &game);
+	mlx_loop(game->mlx);
+	mlx_destroy_window(game->mlx, game->wdw);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 }
