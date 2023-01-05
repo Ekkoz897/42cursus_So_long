@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:41:39 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 18:24:13 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:07:00 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*ft_cleartemp(char *src, int len)
 		free(src);
 		return (0);
 	}
-	temp = ft_calloc(ft_strlen(src) - len + 1, sizeof(char));
+	temp = ft_calloc(ft_strlen2(src) - len + 1, sizeof(char));
 	len++;
 	while (src[len])
 		temp[i++] = src[len++];

@@ -6,13 +6,13 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:42:55 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 18:28:07 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:21:08 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen3(const char *str)
 {
 	size_t	i;
 

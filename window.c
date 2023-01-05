@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:56:12 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:43:50 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int	open_wdw(t_key *game)
 {
+	write(1, "\nisok\n", 6);
 	game->mlx = mlx_init();
 	if (!(game->mlx))
 	{
 		free (game);
 		return (0);
 	}
+	write(1, "\nisok\n", 6);
 	game->wdw = mlx_new_window(game->mlx, WIDTH, HEIGHT, "So_Long");
+	write(1, "\nisok\n", 6);
 	if (!(game->wdw))
 	{
 		free(game->wdw);

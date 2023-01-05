@@ -6,26 +6,25 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 18:33:11 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:38:55 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // passa o mapa para uma matris e conta as linhas (altura)
-char	**map_cpy(int fd, char *argv)
+char	**map_cpy(int fd, char *argv, t_map	*map_size)
 {
 	char	*str;
 	char	**map;
-	t_map	*map_size;
 
-	map_size->tall = 0;
-	map_size->large = 0;
+	write(1, "\nmapcpy\n", 8);
 	while (get_next_line(fd))
 		map_size->large++;
+	write(1, "\nmapcpy\n", 8);
 	close(fd);
 	map = malloc(sizeof(char *) * map_size->large);
-	fd = open(argv[1], O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	while (map_size->large > 0)
 	{
 	str = get_next_line(fd);

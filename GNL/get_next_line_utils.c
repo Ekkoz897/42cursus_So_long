@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:27:35 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 18:24:23 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:06:37 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlen2(const char *str)
 char	*ft_strchr(const char *str, int c)
 {
 	if (c == '\0')
-		return ((char *)str + ft_strlen(str));
+		return ((char *)str + ft_strlen2(str));
 	while (*str != (unsigned char)c)
 	{
 		if (*str == '\0')
@@ -44,14 +44,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (!s)
 		return (NULL);
-	if (ft_strlen(s + start) <= len)
-		len = ft_strlen(s + start);
+	if (ft_strlen2(s + start) <= len)
+		len = ft_strlen2(s + start);
 	sub = ft_calloc(len + 1, 1);
 	if (!sub)
 		return (NULL);
 	i = start;
 	j = 0;
-	while (i < ft_strlen(s) && s[i] && len > 0)
+	while (i < ft_strlen2(s) && s[i] && len > 0)
 	{
 		sub[j++] = s[i++];
 		len--;
@@ -82,7 +82,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (0);
-	p = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	p = malloc(ft_strlen2(s1) + ft_strlen2(s2) + 1);
 	if (!p)
 		return (0);
 	while (*s1 != '\0')
