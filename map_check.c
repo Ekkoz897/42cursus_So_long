@@ -69,9 +69,15 @@ int	check_CPE(char **matriz, t_map *map)
 			if(matriz[map->i][map->j] == 'C')
 				map->food++;
 			if(matriz[map->i][map->j] == 'P')
+			{
 				map->p++;
+				map->player_x = map->i;
+				map->player_y = map->j;
+			}
 			if(matriz[map->i][map->j] == 'E')
 				map->e++;
+			else if (matriz[map->i][map->j] != '0' && matriz[map->i][map->j] != '1')
+				return (0);
 			map->j++;
 		}
 		map->i++;

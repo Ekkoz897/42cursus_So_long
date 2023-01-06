@@ -22,6 +22,8 @@ void	vars_init(t_key	*game, t_map *map)
 	map->large = 0;
 	map->food = 0;
 	map->matriz = 0;
+	map->player_x = 0;
+	map->player_y = 0;
 	game->mlx = 0;
 	game->wdw = 0;
 }
