@@ -17,8 +17,8 @@
 # include "GNL/get_next_line.h"
 # include <fcntl.h>
 
-# define WIDTH 500
-# define HEIGHT 600
+# define WIDTH 600
+# define HEIGHT 250
 
 typedef struct s_key
 {
@@ -28,8 +28,10 @@ typedef struct s_key
 
 typedef struct s_map
 {
-	int	tall;
-	int	large;
+	int		tall;
+	int		large;
+	int		food;
+	char	**matriz;
 }t_map;
 
 int		key_press(int key, t_key *game);
@@ -38,6 +40,6 @@ void	vars_init(t_key	*game, t_map *map_size);
 int		open_wdw(t_key *game);
 size_t	ft_strlen(const char *str);
 char	**map_cpy(int fd, char *argv, t_map	*map_size);
-int		wall_check(char **map, t_map *map_size);
+char	**wall_check(int fd, t_map *map_size);
 
 #endif

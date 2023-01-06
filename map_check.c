@@ -13,50 +13,78 @@
 #include "so_long.h"
 
 // passa o mapa para uma matris e conta as linhas (altura)
-char	**map_cpy(int fd, char *argv, t_map	*map_size)
+char	**map_cpy(int fd, char *argv, t_map	*map)
 {
 	char	*str;
-	char	**map;
 
-	write(1, "\nmapcpy\n", 8);
 	while (get_next_line(fd))
-		map_size->large++;
-	write(1, "\nmapcpy\n", 8);
+		map->large++;
 	close(fd);
-	map = malloc(sizeof(char *) * map_size->large);
+	map->matriz = malloc(sizeof(char *) * map->large);
 	fd = open(argv, O_RDONLY);
-	while (map_size->large > 0)
+	while (map->large > 0)
 	{
-	str = get_next_line(fd);
-	map[map_size->tall] = str;
-	map_size->tall++;
-	map_size->large--;
+		str = get_next_line(fd);
+		map->matriz[map->tall] = str;
+		map->tall++;
+		map->large--;
 	}
-	return (map);
+	return (wall_check(fd, map));
 }
 
 // verifica se as bordas do mapa estão ok
-int	wall_check(char **map, t_map *map_size)
+char	**wall_check(int fd, t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = ft_strlen(map[0]) - 1;
+	j = ft_strlen(map->matriz[0]) - 1;
 	while (i <= j)
 	{
-		if (map[0][i] != '1' || map[map_size->tall - 1][i] != '1')
+		if (map->matriz[0][i] != '1' || map->matriz[map->tall - 1][i] != '1')
 			return (0);
 		i++;
 	}
 	i = 1;
-	while (map[i])
+	while (map->matriz[i])
 	{
-		if ((ft_strlen(map[i]) - 1) != j)
+		if ((ft_strlen(map->matriz[i]) - 1) != j)
 			return (0);
-		if (map[i][0] != '1' || map[i][j] != '1')
+		if (map->matriz[i][0] != '1' || map->matriz[i][j] != '1')
 			return (0);
 		i++;
 	}
-	return (1);
+	return (map->matriz);
+}
+
+int	check_CPE(char **matriz, t_map *map)
+{
+	int	i;
+	int	j;
+	int	p;
+	int	e;
+
+	i = 0;
+	p = 0;
+	e = 0;
+	while (matriz[i])
+	{
+		j = 0;
+		while(matriz[i][j])
+		{
+			if(matriz[i][j] == 'C')
+				map->food++;
+			if(matriz[i][j] == 'P')
+				p++;
+			if(matriz[i][j] == 'E')
+				e++;
+			j++;
+		}
+		i++;
+	}
+	if (!map->food || !p || !e)
+		return (0);
+	else
+		return (1);
 }

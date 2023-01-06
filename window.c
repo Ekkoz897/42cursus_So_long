@@ -14,16 +14,13 @@
 
 int	open_wdw(t_key *game)
 {
-	write(1, "\nisok\n", 6);
 	game->mlx = mlx_init();
 	if (!(game->mlx))
 	{
 		free (game);
 		return (0);
 	}
-	write(1, "\nisok\n", 6);
 	game->wdw = mlx_new_window(game->mlx, WIDTH, HEIGHT, "So_Long");
-	write(1, "\nisok\n", 6);
 	if (!(game->wdw))
 	{
 		free(game->wdw);

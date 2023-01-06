@@ -15,28 +15,26 @@
 int	main(int argc, char **argv)
 {
 	t_key	*game;
+	t_map	*map;
 	int		fd;
-	t_map	*map_size;
-	char	**map;
 
 	if (!(argc == 2))
 		return (0);
 	game = malloc(sizeof(t_key));
 	if (!game)
 		return (0);
-	map_size = malloc(sizeof(t_map));
-	if (!map_size)
+	map = malloc(sizeof(t_map));
+	if (!map)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
-	vars_init(game, map_size);
+	vars_init(game, map);
 	open_wdw(game);
-	write(1, "\nisok\n", 6);
 	mlx_hook(game->wdw, 2, 1L << 0, key_press, &game);
 	mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, &game);
-	map = map_cpy(fd, argv[1], map_size);
-	wall_check(map, map_size);
+	map->matriz = map_cpy(fd, argv[1], map);
+	if (!map->matriz)
+		return (0);
 	mlx_loop(game->mlx);
-	mlx_destroy_window(game->mlx, game->wdw);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	destroy_wdw(fd, game);
+	return (0);
 }
