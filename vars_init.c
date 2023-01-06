@@ -14,12 +14,16 @@
 
 void	vars_init(t_key	*game, t_map *map)
 {
-	game->mlx = 0;
-	game->wdw = 0;
+	map->i = 0;
+	map->j = 0;
+	map->p = 0;
+	map->e = 0;
 	map->tall = 0;
 	map->large = 0;
 	map->food = 0;
 	map->matriz = 0;
+	game->mlx = 0;
+	game->wdw = 0;
 }
 
 size_t	ft_strlen(const char *str)

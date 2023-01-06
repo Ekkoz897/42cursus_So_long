@@ -28,10 +28,17 @@ typedef struct s_key
 
 typedef struct s_map
 {
+	int	i;
+	int	j;
+	int	p;
+	int	e;
+
 	int		tall;
 	int		large;
 	int		food;
 	char	**matriz;
+	int		player_x;
+	int		player_y;
 }t_map;
 
 int		key_press(int key, t_key *game);
@@ -41,5 +48,6 @@ int		open_wdw(t_key *game);
 size_t	ft_strlen(const char *str);
 char	**map_cpy(int fd, char *argv, t_map	*map_size);
 char	**wall_check(int fd, t_map *map_size);
+int		check_CPE(char **matriz, t_map *map);
 
 #endif

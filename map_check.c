@@ -61,31 +61,22 @@ char	**wall_check(int fd, t_map *map)
 
 int	check_CPE(char **matriz, t_map *map)
 {
-	int	i;
-	int	j;
-	int	p;
-	int	e;
-
-	i = 0;
-	p = 0;
-	e = 0;
-	while (matriz[i])
+	while (matriz[map->i])
 	{
-		j = 0;
-		while(matriz[i][j])
+		map->j = 0;
+		while(matriz[map->i][map->j])
 		{
-			if(matriz[i][j] == 'C')
+			if(matriz[map->i][map->j] == 'C')
 				map->food++;
-			if(matriz[i][j] == 'P')
-				p++;
-			if(matriz[i][j] == 'E')
-				e++;
-			j++;
+			if(matriz[map->i][map->j] == 'P')
+				map->p++;
+			if(matriz[map->i][map->j] == 'E')
+				map->e++;
+			map->j++;
 		}
-		i++;
+		map->i++;
 	}
-	if (!map->food || !p || !e)
+	if (!map->food || map->p != 1 || map->e != 1)
 		return (0);
-	else
-		return (1);
+	return (1);
 }
