@@ -27,13 +27,14 @@ int	main(int argc, char **argv)
 	if (!map)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
+	map->matriz = map_cpy(fd, argv[1], map);
+	if (!map->matriz)
+		return (0);
+	map->large = ft_strlen(map->matriz[0]);
 	vars_init(game, map);
 	open_wdw(game);
 	mlx_hook(game->wdw, 2, 1L << 0, key_press, &game);
 	mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, &game);
-	map->matriz = map_cpy(fd, argv[1], map);
-	if (!map->matriz)
-		return (0);
 	mlx_loop(game->mlx);
 	destroy_wdw(fd, game);
 	return (0);

@@ -29,6 +29,7 @@ char	**map_cpy(int fd, char *argv, t_map	*map)
 		map->tall++;
 		map->large--;
 	}
+	map->large = ft_strlen(map->matriz[0]);
 	return (wall_check(fd, map));
 }
 
@@ -76,9 +77,9 @@ int	check_CPE(char **matriz, t_map *map)
 			}
 			else if(matriz[map->i][map->j] == 'E')
 				map->e++;
-				// else if est'a a retornar 0, mas n devia
-			// else if(matriz[map->i][map->j] != '0' && matriz[map->i][map->j] != '1')
-			// 	return (0);
+			else if(matriz[map->i][map->j] != '0' && matriz[map->i][map->large] != '\n' 
+				&& matriz[map->i][map->j] != '1')
+				return (0);
 			map->j++;
 		}
 		map->i++;
