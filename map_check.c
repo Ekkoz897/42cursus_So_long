@@ -58,6 +58,7 @@ char	**wall_check(int fd, t_map *map)
 	}
 	if (check_CPE(map->matriz, map))
 		return (map->matriz);
+	return (0);
 }
 
 int	check_CPE(char **matriz, t_map *map)

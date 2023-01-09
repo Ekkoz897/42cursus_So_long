@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/04 17:56:12 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:09:19 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	key_press(int key, t_key *game)
 	if (key == 65307)
 	{
 		destroy_wdw(key, game);
-		free (game);
 	}
 	if (key == 'w')
 		write(1, "w", 1);
