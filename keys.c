@@ -6,13 +6,13 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 16:09:19 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:41:38 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_press(int key, t_key *game)
+int	key_press(int key, t_game *game)
 {
 	if (key == 65307)
 	{

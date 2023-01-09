@@ -6,13 +6,13 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 16:18:19 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:44:22 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	vars_init(t_key	*game, t_map *map)
+void	vars_init(t_game	*game, t_map *map)
 {
 	map->i = 0;
 	map->j = 0;
@@ -26,6 +26,7 @@ void	vars_init(t_key	*game, t_map *map)
 	map->player_y = 0;
 	game->mlx = 0;
 	game->wdw = 0;
+	game->pixel = 10;
 }
 
 size_t	ft_strlen(const char *str)
