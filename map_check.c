@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 16:48:54 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:30:15 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	**wall_check(int fd, t_map *map)
 			return (0);
 		i++;
 	}
-	i = 1;
-	while (map->matriz[i])
+	i = 0;
+	while (i < map->tall)
 	{
 		if ((ft_strlen(map->matriz[i]) - 1) != j)
 			return (0);
@@ -63,7 +63,9 @@ char	**wall_check(int fd, t_map *map)
 
 int	check_CPE(char **matriz, t_map *map)
 {
-	while (matriz[map->i])
+	map->i = 0;
+
+	while (map->i < map->tall)
 	{
 		map->j = 0;
 		while(matriz[map->i][map->j])

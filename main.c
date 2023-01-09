@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 17:36:40 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:31:44 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char **argv)
 		return (0);
 	map->large = ft_strlen(map->matriz[0]);
 	open_wdw(&game, map);
-	img_to_window(&game, map);
+	game.img = mlx_xpm_file_to_image(game.mlx, "images/1.xpm", &game.pixel, &game.pixel);
+	mlx_put_image_to_window(game.mlx, game.wdw, game.img, 0, 0);
 	mlx_hook(game.wdw, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.wdw, 17, 1L << 17, destroy_wdw, &game);
 	mlx_loop(game.mlx);
