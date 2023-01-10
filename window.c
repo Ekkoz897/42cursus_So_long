@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 18:15:03 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:26:56 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,39 @@ int	destroy_wdw(int key, t_game *game)
 
 int	img_to_window(t_game *game, t_map *map)
 {
-	// map->j = 0;
-	// while (map->matriz[map->j])
-	// {
-	// 	map->i = 0;
-	// 	while (map->matriz[map->j][map->i])
-	// 	{
-	// 		if (map->matriz[map->i][map->j] == '1')
-	// 		{
-	// 			game->img = mlx_xpm_file_to_image(game->mlx, "images/1.xpm", &game->pixel, &game->pixel);
-	// 			mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->i * 64, map->j * 64);
-	// 		}
-	// 		if (map->matriz[map->i][map->j] == '0')
-	// 		{
-	// 			game->img = mlx_xpm_file_to_image(game->mlx, "images/0.xpm", &game->pixel, &game->pixel);
-	// 			mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->i * 64, map->j * 64);
-	// 		}
-	// 		if (map->matriz[map->i][map->j] == 'P')
-	// 		{
-	// 			game->img = mlx_xpm_file_to_image(game->mlx, "grass.xpm", &game->pixel, &game->pixel);
-	// 			mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->i * 64, map->j * 64);
-	// 		}
-	// 		if (map->matriz[map->i][map->j] == 'C')
-	// 		{
-	// 			game->img = mlx_xpm_file_to_image(game->mlx, "Cimages/c.xpm", &game->pixel, &game->pixel);
-	// 			mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->i * 64, map->j * 64);
-	// 		}
-	// 		if (map->matriz[map->i][map->j] == 'E')
-	// 		{
-	// 			game->img = mlx_xpm_file_to_image(game->mlx, "grass.xpm", &game->pixel, &game->pixel);
-	// 			mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->i * 64, map->j * 64);
-	// 		}
-	// 		map->i++;
-	// 	}
-	// 	map->j++;
-	// }
+	map->i = 0;
+	while (map->i < map->tall)
+	{
+		map->j = 0;
+		while (map->j < map->large)
+		{
+			if (map->matriz[map->i][map->j] == '1')
+			{
+				game->img = mlx_xpm_file_to_image(game->mlx, "images/1.xpm", &game->pixel, &game->pixel);
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->j * 64, map->i * 64);
+			}
+			if (map->matriz[map->i][map->j] == '0')
+			{
+				game->img = mlx_xpm_file_to_image(game->mlx, "images/0.xpm", &game->pixel, &game->pixel);
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->j * 64, map->i * 64);
+			}
+			if (map->matriz[map->i][map->j] == 'P')
+			{
+				game->img = mlx_xpm_file_to_image(game->mlx, "images/p.xpm", &game->pixel, &game->pixel);
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->j * 64, map->i * 64);
+			}
+			if (map->matriz[map->i][map->j] == 'C')
+			{
+				game->img = mlx_xpm_file_to_image(game->mlx, "images/c.xpm", &game->pixel, &game->pixel);
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->j * 64, map->i * 64);
+			}
+			if (map->matriz[map->i][map->j] == 'E')
+			{
+				game->img = mlx_xpm_file_to_image(game->mlx, "images/e.xpm", &game->pixel, &game->pixel);
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img, map->j * 64, map->i * 64);
+			}
+			map->j++;
+		}
+		map->i++;
+	}
 }
