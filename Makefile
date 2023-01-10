@@ -22,7 +22,7 @@ GNL_OBJ = $(GNL_SRC:.c=.o)
 
 # a.out	: $(GNL_OBJ)
 all:
-	$(CC) main.c $(SRC) $(addprefix libft/,$(LIBFT_SRC)) $(addprefix GNL/,$(GNL_SRC)) libmlx_linux.a -lXext -lX11
+	$(CC) main.c $(SRC) $(addprefix libft/,$(LIBFT_SRC)) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_linux.a -lXext -lX11
 
 run:	all
 	./a.out $(addprefix maps/,$(MAP_SRC))
