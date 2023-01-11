@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 18:30:15 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:27:04 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ char	**map_cpy(int fd, char *argv, t_map	*map)
 		map->large--;
 	}
 	map->large = ft_strlen(map->matriz[0]);
-	return (wall_check(fd, map));
+	return (wall_check(map));
 }
 
 // verifica se as bordas do mapa estão ok
-char	**wall_check(int fd, t_map *map)
+char	**wall_check(t_map *map)
 {
 	int	i;
 	int	j;

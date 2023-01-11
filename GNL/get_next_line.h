@@ -6,14 +6,16 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:25:43 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/05 15:12:25 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:32:49 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "../libft/libft.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5

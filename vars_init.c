@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 17:44:22 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:31:04 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	vars_init(t_game	*game, t_map *map)
 	map->player_y = 0;
 	game->mlx = 0;
 	game->wdw = 0;
-	game->pixel = 10;
+	game->pixel = 64;
 }
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i])
