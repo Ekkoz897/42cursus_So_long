@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/09 16:41:38 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:17:18 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	key_press(int key, t_game *game)
 		destroy_wdw(key, game);
 	}
 	if (key == 'w')
-		write(1, "w", 1);
+		game->pp_y += 1;
 	else if (key == 'a')
-		write(1, "a", 1);
+		game->pp_x -= 1;
 	else if (key == 's')
-		write(1, "s", 1);
+		game->pp_y -= 1;
 	else if (key == 'd' )
-		write(1, "d", 1);
-	return (0);
+		game->pp_x += 1;
+		img_to_window(game);
+	return (1);
 }
-
