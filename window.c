@@ -6,24 +6,27 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/11 18:19:33 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:36:55 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	open_wdw(t_game *game, t_map *map)
+int	open_wdw(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!(game->mlx))
 		return (0);
 	game->wdw = mlx_new_window(game->mlx,
-			map->large * 64, map->tall * 64, "So_Long");
+			game->large * 64, game->tall * 64, "So_Long");
 	if (!(game->wdw))
+	{
+		free (game->mlx);
 		return (0);
-	game->img = mlx_new_image(game->mlx, map->large * 64, map->tall * 64);
-	game->pp_x = map->p_x * 64;
-	game->pp_y = map->p_y * 64;
+	}
+	game->img = mlx_new_image(game->mlx, game->large * 64, game->tall * 64);
+	game->pp_x = game->p_x * 64;
+	game->pp_y = game->p_y * 64;
 	return (1);
 }
 
@@ -40,18 +43,18 @@ int	destroy_wdw(int key, t_game *game)
 	return (0);
 }
 
-void	ifs(t_game *game, t_map *map)
+void	ifs(t_game *game)
 {
-	if (game->matriz[map->i][map->j] == '1')
+	if (game->matriz[game->i][game->j] == '1')
 			game->img = mlx_xpm_file_to_image(game->mlx,
 				"images/1.xpm", &game->pixel, &game->pixel);
-	if (game->matriz[map->i][map->j] == 'C')
+	if (game->matriz[game->i][game->j] == 'C')
 		game->img = mlx_xpm_file_to_image(game->mlx,
 				"images/c.xpm", &game->pixel, &game->pixel);
-	if (game->matriz[map->i][map->j] == 'E')
+	if (game->matriz[game->i][game->j] == 'E')
 		game->img = mlx_xpm_file_to_image(game->mlx,
 				"images/e.xpm", &game->pixel, &game->pixel);
-	if (game->matriz[map->i][map->j] == 'P')
+	if (game->matriz[game->i][game->j] == 'P')
 	{
 		game->img = mlx_xpm_file_to_image(game->mlx,
 				"images/right.xpm", &game->pixel, &game->pixel);
@@ -60,24 +63,24 @@ void	ifs(t_game *game, t_map *map)
 	}
 	else
 		mlx_put_image_to_window(game->mlx, game->wdw, game->img,
-			map->j * 64, map->i * 64);
+			game->j * 64, game->i * 64);
 }
 
-void	img_to_window(t_game *game, t_map *map)
+void	img_to_window(t_game *game)
 {
-	map->i = 0;
-	while (map->i < map->tall)
+	game->i = 0;
+	while (game->i < game->tall)
 	{
-		map->j = 0;
-		while (map->j < map->large)
+		game->j = 0;
+		while (game->j < game->large)
 		{
 			game->img = mlx_xpm_file_to_image(game->mlx, "images/0.xpm",
 					&game->pixel, &game->pixel);
 			mlx_put_image_to_window(game->mlx, game->wdw, game->img,
-				map->j * 64, map->i * 64);
-			ifs(game, map);
-			map->j++;
+				game->j * 64, game->i * 64);
+			ifs(game);
+			game->j++;
 		}
-		map->i++;
+		game->i++;
 	}
 }

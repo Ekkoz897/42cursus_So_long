@@ -14,8 +14,10 @@ MAP_SRC = map.ber
 
 GNL_OBJ = $(GNL_SRC:.c=.o)
 
-# a.out	: $(GNL_OBJ)
-all:
+
+all: $(NAME)
+
+$(NAME): #$(GNL_OBJ)
 	$(CC) $(FLAGS) main.c $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11
 
 run:	all
