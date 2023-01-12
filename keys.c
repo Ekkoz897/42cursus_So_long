@@ -32,7 +32,7 @@ int keyup(int key, t_game *game)
 	if (key == 'a')
 		game->a = 0;
 	if (key == 'w')
-		game->s = 0;
+		game->w = 0;
 	if (key == 's')
 		game->s = 0;
 	if (key == 'd')
