@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/11 19:36:55 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:28:49 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	destroy_wdw(int key, t_game *game)
 {
 	if (key)
 	{
-		mlx_clear_window(game->mlx, game->wdw);
 		mlx_destroy_window(game->mlx, game->wdw);
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
+		free(game->matriz);
 		exit(0);
 	}
 	return (0);
@@ -46,18 +46,14 @@ int	destroy_wdw(int key, t_game *game)
 void	ifs(t_game *game)
 {
 	if (game->matriz[game->i][game->j] == '1')
-			game->img = mlx_xpm_file_to_image(game->mlx,
-				"images/1.xpm", &game->pixel, &game->pixel);
+			game->img = game->t_img.one;
 	if (game->matriz[game->i][game->j] == 'C')
-		game->img = mlx_xpm_file_to_image(game->mlx,
-				"images/c.xpm", &game->pixel, &game->pixel);
+		game->img = game->t_img.c;
 	if (game->matriz[game->i][game->j] == 'E')
-		game->img = mlx_xpm_file_to_image(game->mlx,
-				"images/e.xpm", &game->pixel, &game->pixel);
+		game->img = game->t_img.e;
 	if (game->matriz[game->i][game->j] == 'P')
 	{
-		game->img = mlx_xpm_file_to_image(game->mlx,
-				"images/right.xpm", &game->pixel, &game->pixel);
+		game->img = game->t_img.p;
 		mlx_put_image_to_window(game->mlx, game->wdw, game->img,
 			game->pp_x, game->pp_y);
 	}
@@ -68,17 +64,26 @@ void	ifs(t_game *game)
 
 void	img_to_window(t_game *game)
 {
-	game->i = 0;
 	while (game->i < game->tall)
 	{
 		game->j = 0;
 		while (game->j < game->large)
 		{
-			game->img = mlx_xpm_file_to_image(game->mlx, "images/0.xpm",
-					&game->pixel, &game->pixel);
-			mlx_put_image_to_window(game->mlx, game->wdw, game->img,
-				game->j * 64, game->i * 64);
-			ifs(game);
+			if (game->matriz[game->i][game->j] == '1')
+				game->img = game->t_img.one;
+			if (game->matriz[game->i][game->j] == 'C')
+				game->img = game->t_img.c;
+			if (game->matriz[game->i][game->j] == 'E')
+				game->img = game->t_img.e;
+			if (game->matriz[game->i][game->j] == 'P')
+			{
+				game->img = game->t_img.p;
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img,
+					game->pp_x, game->pp_y);
+			}
+			else
+				mlx_put_image_to_window(game->mlx, game->wdw, game->img,
+					game->j * 64, game->i * 64);
 			game->j++;
 		}
 		game->i++;

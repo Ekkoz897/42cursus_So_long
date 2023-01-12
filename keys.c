@@ -6,13 +6,13 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/11 20:22:46 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:44:38 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int keydown(int key, t_game *game)
+int	keydown(int key, t_game *game)
 {
 	if (key == 'a')
 		game->a = 1;
@@ -27,12 +27,12 @@ int keydown(int key, t_game *game)
 	return (0);
 }
 
-int keyup(int key, t_game *game)
+int	keyup(int key, t_game *game)
 {
 	if (key == 'a')
 		game->a = 0;
 	if (key == 'w')
-		game->s = 0;
+		game->w = 0;
 	if (key == 's')
 		game->s = 0;
 	if (key == 'd')
@@ -40,9 +40,9 @@ int keyup(int key, t_game *game)
 	return (0);
 }
 
-int p_move(t_game *game)
+int	p_move(t_game *game)
 {
-if (game->a == 1)
+	if (game->a == 1)
 		game->pp_x--;
 	if (game->w == 1)
 		game->pp_y--;
@@ -50,9 +50,12 @@ if (game->a == 1)
 		game->pp_y++;
 	if (game->d == 1)
 		game->pp_x++;
+	imgs_init(game);
+	game->i = 0;
 	img_to_window(game);
-	game->img= mlx_xpm_file_to_image(game->mlx, "images/0.xpm", &game->pixel, &game->pixel);
-	mlx_put_image_to_window(game->mlx, game->wdw, game->img, game->pp_x, game->pp_y);
+	game->img = game->t_img.zero;
+	mlx_put_image_to_window(game->mlx, game->wdw, game->img,
+		game->pp_x, game->pp_y);
 	free(game->img);
 	return (0);
 }
