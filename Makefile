@@ -18,11 +18,10 @@ GNL_OBJ = $(GNL_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): #$(GNL_OBJ)
-	$(CC) $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11
+	$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11
 
 valgrind:	all
-	$(CC) -g $(CFLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11
-	valgrind --leak-check=yes --leak-check=full ./a.out $(addprefix maps/,$(MAP_SRC))
+	valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all ./a.out $(addprefix maps/,$(MAP_SRC))
 
 run:	all
 	./a.out $(addprefix maps/,$(MAP_SRC))

@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:41:39 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/05 15:07:00 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:44:37 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ char	*ft_cleartemp(char *src, int len)
 	len++;
 	while (src[len])
 		temp[i++] = src[len++];
-	free(src);
+	free (src);
 	return (temp);
 }

@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 20:30:19 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:45:30 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	open_wdw(t_game *game)
 		free (game->mlx);
 		return (0);
 	}
-	game->img = mlx_new_image(game->mlx, game->large * 64, game->tall * 64);
 	game->pp_x = game->p_x * 64;
 	game->pp_y = game->p_y * 64;
 	return (1);
@@ -32,10 +31,25 @@ int	open_wdw(t_game *game)
 
 int	destroy_wdw(t_game *game)
 {
+	int	i;
+
+	mlx_destroy_image(game->mlx, game->t_img.c);
+	mlx_destroy_image(game->mlx, game->t_img.e);
+	mlx_destroy_image(game->mlx, game->t_img.one);
+	mlx_destroy_image(game->mlx, game->t_img.p);
+	mlx_destroy_image(game->mlx, game->t_img.zero);
+	mlx_clear_window(game->mlx, game->wdw);
 	mlx_destroy_window(game->mlx, game->wdw);
 	mlx_destroy_display(game->mlx);
+	i = 0;
+	while (i < game->tall)
+	{
+		free(game->matriz[i]);
+		i++;
+	}
+	free (game->matriz);
 	free(game->mlx);
-	free(game->matriz);
+	get_next_line(-1);
 	exit(0);
 }
 

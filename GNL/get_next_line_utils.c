@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:27:35 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/05 15:06:37 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:49:58 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strchr(const char *str, int c)
 	return ((char *)str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -74,7 +74,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return ((void *)array);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	char	*p;

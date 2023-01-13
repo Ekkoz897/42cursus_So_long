@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 13:04:13 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:41:07 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 // passa o mapa para uma matris e conta as linhas (altura)
 char	**map_cpy(int fd, char *argv, t_game	*game)
 {
-	while (get_next_line(fd))
+	char	*temp;
+
+	temp = get_next_line(fd);
+	while (temp)
+	{
+		free (temp);
+		temp = get_next_line(fd);
 		game->large++;
+	}
 	close(fd);
-	game->matriz = malloc(sizeof(char *) * game->large);
+	game->matriz = malloc(sizeof(char *) * (game->large));
 	fd = open(argv, O_RDONLY);
 	while (game->large > 0)
 	{
@@ -63,11 +70,11 @@ int	wall_check(t_game *game)
 // verifica se o mapa tem todos os elementos obrigatorios
 int	check_cpe(char **matriz, t_game *game)
 {
-	game->i = -1;
+	game->i = 0;
 	while (++game->i < game->tall)
 	{
 		game->j = -1;
-		while (matriz[game->i][++game->j])
+		while (++game->j < game->large)
 		{
 			if (matriz[game->i][game->j] == 'C')
 				game->food++;
