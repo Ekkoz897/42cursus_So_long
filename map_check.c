@@ -87,24 +87,24 @@ int	check_cpe(char **matriz, t_game *game)
 	return (1);
 }
 
-int	check_path(int x, int y, t_game *game)
+int	check_path(int y, int x, t_game *game)
 {
-	if (game->matriz[x][y] == '0' || game->matriz[x][y] == 'P' ||
-		game->matriz[x][y] == 'C' || game->matriz[x][y] == 'E')
+	if (game->matriz[y][x] == '0' || game->matriz[y][x] == 'P' ||
+		game->matriz[y][x] == 'C' || game->matriz[y][x] == 'E')
 	{
-		if (game->matriz[x][y] == '0')
-			game->matriz[x][y] = '-';
-		if (game->matriz[x][y] == 'C')
-			game->matriz[x][y] = 'c';
-		if (game->matriz[x][y] == 'E')
-			game->matriz[x][y] = 'e';
-		if (check_path(x, y - 1, game))
+		if (game->matriz[y][x] == '0')
+			game->matriz[y][x] = '-';
+		if (game->matriz[y][x] == 'C')
+			game->matriz[y][x] = 'c';
+		if (game->matriz[y][x] == 'E')
+			game->matriz[y][x] = 'e';
+		if (check_path(y, x - 1, game))
 			return (1);
-		if (check_path(x + 1, y, game))
+		if (check_path(y + 1, x, game))
 			return (1);
-		if (check_path(x, y + 1, game))
+		if (check_path(y, x + 1, game))
 			return (1);
-		if (check_path(x - 1, y, game))
+		if (check_path(y - 1, x, game))
 			return (1);
 	}
 	return (0);
