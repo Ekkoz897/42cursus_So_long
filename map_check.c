@@ -84,8 +84,7 @@ int	check_cpe(char **matriz, t_game *game)
 	}
 	if (game->food = 0 || game->p != 1 || game->e != 1)
 		return (0);
-	if (check_path(game->p_x, game->p_y, game));
-		return (1);
+	return (1);
 }
 
 int	check_path(int x, int y, t_game *game)
