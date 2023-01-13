@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 14:27:23 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:42:08 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	game_start(t_game *game, char *map)
 		return (0);
 	check_path(game->p_y, game->p_x, game);
 	if (wall_check(game))
+	{
 		write(1, "The map is valid, launching game...\n\n", 38);
+		write(1, "------------------\n\n", 20);
+	}
 	else
 		return (0);
 	open_wdw(game);

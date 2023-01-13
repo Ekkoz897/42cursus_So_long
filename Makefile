@@ -20,13 +20,22 @@ GNL_OBJ = $(GNL_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
+	@echo "\nCompiling the game files...\n"
+	@make -s -C mlx_linux
+	@$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
+
+run:
+	@echo "\nLoading the map"
+	@echo "\n------------------"
+	@./so_long $(addprefix maps/,$(MAP_SRC))
+
+clean:
+	@find . -type f \( -name "*.o" \) -delete
+
+fclean: clean
+	@find . -type f \( -name "*.a" -o -name "so_long" \) -delete
+
+re: fclean all
 
 valgrind:	all
 	valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all ./so_long $(addprefix maps/,$(MAP_SRC))
-
-run:	all
-	./so_long $(addprefix maps/,$(MAP_SRC))
-
-clean:
-	rm -f so_long

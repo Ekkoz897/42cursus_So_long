@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 14:41:07 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:38:07 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	wall_check(t_game *game)
 			return (0);
 		i++;
 	}
-	write(1, "\n\nChecking map components...\n\n", 30);
+	write(1, "\nChecking map components...\n\n", 30);
+	write(1, "------------------\n\n", 20);
 	return (check_path_check(game->matriz, game));
 }
 
