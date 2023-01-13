@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 21:10:12 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:04:13 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ int	check_cpe(char **matriz, t_game *game)
 // verifica se o resultado do path_check e valido
 int	check_path_check(char **matriz, t_game *game)
 {
-	game->food = 0;
+	int	i;
+
+	i = 0;
 	game->e = 0;
 	game->i = -1;
 	while (++game->i < game->tall)
@@ -102,12 +104,12 @@ int	check_path_check(char **matriz, t_game *game)
 		while (matriz[game->i][++game->j])
 		{
 			if (matriz[game->i][game->j] == 'c')
-				game->food++;
+				i++;
 			else if (matriz[game->i][game->j] == 'e')
 				game->e++;
 		}
 	}
-	if (game->food == 0 || game->p != 1 || game->e != 1)
+	if (i != game->food || game->p != 1 || game->e != 1)
 		return (0);
 	return (1);
 }
