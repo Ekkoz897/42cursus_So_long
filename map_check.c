@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 17:38:07 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:06:57 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ int	check_path(int x, int y, t_game *game)
 			game->matriz[x][y] = '-';
 		if (game->matriz[x][y] == 'C')
 			game->matriz[x][y] = 'c';
+		if (game->matriz[x][y] == 'P')
+			game->matriz[x][y] = 'p';
 		if (game->matriz[x][y] == 'E')
 			game->matriz[x][y] = 'e';
 		if (check_path(x, y - 1, game))
