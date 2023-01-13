@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 19:29:17 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:28:17 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	**map_cpy(int fd, char *argv, t_game	*game)
 		game->large--;
 	}
 	game->large = ft_strlen(game->matriz[0]);
-	return (wall_check(game));
+	return (game->matriz);
 }
 
 // verifica se as bordas do mapa estão ok
-char	**wall_check(t_game *game)
+int	wall_check(t_game *game)
 {
 	int	i;
 	int	j;
@@ -53,11 +53,10 @@ char	**wall_check(t_game *game)
 			return (0);
 		i++;
 	}
-	if (check_cpe(game->matriz, game))
-		return (game->matriz);
-	return (0);
+	return (check_cpe(game->matriz, game));
 }
 
+// verifica se o mapa tem todos os elementos obrigatorios
 int	check_cpe(char **matriz, t_game *game)
 {
 	game->i = -1;
@@ -84,27 +83,28 @@ int	check_cpe(char **matriz, t_game *game)
 	}
 	if (game->food == 0 || game->p != 1 || game->e != 1)
 		return (0);
-	return (1);
+	return (check_path(game->p_y, game->p_x, game));
 }
 
-int	check_path(int y, int x, t_game *game)
+// verifica se o p tem um caminho de 0's ate todos os C e o E
+int	check_path(int x, int y, t_game *game)
 {
-	if (game->matriz[y][x] == '0' || game->matriz[y][x] == 'P' ||
-		game->matriz[y][x] == 'C' || game->matriz[y][x] == 'E')
+	if (game->matriz[x][y] == '0' || game->matriz[x][y] == 'P' ||
+		game->matriz[x][y] == 'C' || game->matriz[x][y] == 'E')
 	{
-		if (game->matriz[y][x] == '0')
-			game->matriz[y][x] = '-';
-		if (game->matriz[y][x] == 'C')
-			game->matriz[y][x] = 'c';
-		if (game->matriz[y][x] == 'E')
-			game->matriz[y][x] = 'e';
-		if (check_path(y, x - 1, game))
+		if (game->matriz[x][y] == '0')
+			game->matriz[x][y] = '-';
+		if (game->matriz[x][y] == 'C')
+			game->matriz[x][y] = 'c';
+		if (game->matriz[x][y] == 'E')
+			game->matriz[x][y] = 'e';
+		if (check_path(x, y - 1, game))
 			return (1);
-		if (check_path(y + 1, x, game))
+		if (check_path(x + 1, y, game))
 			return (1);
-		if (check_path(y, x + 1, game))
+		if (check_path(x, y + 1, game))
 			return (1);
-		if (check_path(y - 1, x, game))
+		if (check_path(x - 1, y, game))
 			return (1);
 	}
 	return (0);

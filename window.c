@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 10:28:49 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:30:19 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,60 +30,42 @@ int	open_wdw(t_game *game)
 	return (1);
 }
 
-int	destroy_wdw(int key, t_game *game)
+int	destroy_wdw(t_game *game)
 {
-	if (key)
-	{
-		mlx_destroy_window(game->mlx, game->wdw);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-		free(game->matriz);
-		exit(0);
-	}
-	return (0);
+	mlx_destroy_window(game->mlx, game->wdw);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free(game->matriz);
+	exit(0);
 }
 
 void	ifs(t_game *game)
 {
 	if (game->matriz[game->i][game->j] == '1')
-			game->img = game->t_img.one;
-	if (game->matriz[game->i][game->j] == 'C')
-		game->img = game->t_img.c;
-	if (game->matriz[game->i][game->j] == 'E')
-		game->img = game->t_img.e;
-	if (game->matriz[game->i][game->j] == 'P')
-	{
-		game->img = game->t_img.p;
-		mlx_put_image_to_window(game->mlx, game->wdw, game->img,
-			game->pp_x, game->pp_y);
-	}
-	else
-		mlx_put_image_to_window(game->mlx, game->wdw, game->img,
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.one,
 			game->j * 64, game->i * 64);
+	else if (game->matriz[game->i][game->j] == 'c')
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.c,
+			game->j * 64, game->i * 64);
+	else if (game->matriz[game->i][game->j] == 'e')
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.e,
+			game->j * 64, game->i * 64);
+	else
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.zero,
+			game->pp_x, game->pp_y);
 }
 
 void	img_to_window(t_game *game)
 {
+	game->i = 0;
 	while (game->i < game->tall)
 	{
 		game->j = 0;
 		while (game->j < game->large)
 		{
-			if (game->matriz[game->i][game->j] == '1')
-				game->img = game->t_img.one;
-			if (game->matriz[game->i][game->j] == 'C')
-				game->img = game->t_img.c;
-			if (game->matriz[game->i][game->j] == 'E')
-				game->img = game->t_img.e;
-			if (game->matriz[game->i][game->j] == 'P')
-			{
-				game->img = game->t_img.p;
-				mlx_put_image_to_window(game->mlx, game->wdw, game->img,
-					game->pp_x, game->pp_y);
-			}
-			else
-				mlx_put_image_to_window(game->mlx, game->wdw, game->img,
-					game->j * 64, game->i * 64);
+			mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.zero,
+				game->j * 64, game->i * 64);
+			ifs(game);
 			game->j++;
 		}
 		game->i++;

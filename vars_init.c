@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 10:20:45 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:15:50 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	imgs_init(t_game *game)
 			&game->pixel, &game->pixel);
 	game->t_img.one = mlx_xpm_file_to_image(game->mlx, "images/1.xpm",
 			&game->pixel, &game->pixel);
-	game->t_img.p = mlx_xpm_file_to_image(game->mlx, "images/p.xpm",
+	game->t_img.p = mlx_xpm_file_to_image(game->mlx, "images/right.xpm",
 			&game->pixel, &game->pixel);
 	game->t_img.c = mlx_xpm_file_to_image(game->mlx, "images/c.xpm",
 			&game->pixel, &game->pixel);

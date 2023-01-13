@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 15:44:38 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:31:42 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	keydown(int key, t_game *game)
 	else if (key == 'd')
 		game->d = 1;
 	else if (key == 65307)
-		destroy_wdw(key, game);
+		destroy_wdw(game);
 	return (0);
 }
 
@@ -42,6 +42,7 @@ int	keyup(int key, t_game *game)
 
 int	p_move(t_game *game)
 {
+	img_to_window(game);
 	if (game->a == 1)
 		game->pp_x--;
 	if (game->w == 1)
@@ -50,12 +51,7 @@ int	p_move(t_game *game)
 		game->pp_y++;
 	if (game->d == 1)
 		game->pp_x++;
-	imgs_init(game);
-	game->i = 0;
-	img_to_window(game);
-	game->img = game->t_img.zero;
-	mlx_put_image_to_window(game->mlx, game->wdw, game->img,
+	mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.p,
 		game->pp_x, game->pp_y);
-	free(game->img);
 	return (0);
 }
