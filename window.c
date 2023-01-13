@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 14:45:30 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:12:31 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	open_wdw(t_game *game)
 	if (!(game->mlx))
 		return (0);
 	game->wdw = mlx_new_window(game->mlx,
-			game->large * 64, game->tall * 64, "So_Long");
+			game->large * 64, game->tall * 64, "so_long");
 	if (!(game->wdw))
 	{
 		free (game->mlx);
@@ -50,6 +50,7 @@ int	destroy_wdw(t_game *game)
 	free (game->matriz);
 	free(game->mlx);
 	get_next_line(-1);
+	write(1, "GAME OVER\n\n", 12);
 	exit(0);
 }
 

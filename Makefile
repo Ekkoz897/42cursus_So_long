@@ -1,4 +1,4 @@
-NAME = so_long.a
+NAME = so_long
 
 CC = cc
 
@@ -12,16 +12,21 @@ GNL_SRC = get_next_line_utils.c get_next_line.c
 
 MAP_SRC = map.ber
 
+SRC_OBJ = $(SRC:.c=.o)
+
 GNL_OBJ = $(GNL_SRC:.c=.o)
 
 
 all: $(NAME)
 
-$(NAME): #$(GNL_OBJ)
-	$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11
+$(NAME):
+	$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
 
 valgrind:	all
-	valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all ./a.out $(addprefix maps/,$(MAP_SRC))
+	valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all ./so_long $(addprefix maps/,$(MAP_SRC))
 
 run:	all
-	./a.out $(addprefix maps/,$(MAP_SRC))
+	./so_long $(addprefix maps/,$(MAP_SRC))
+
+clean:
+	rm -f so_long
