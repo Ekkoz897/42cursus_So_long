@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/11 19:33:49 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:29:17 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ int	check_cpe(char **matriz, t_game *game)
 				return (0);
 		}
 	}
-	if (game->food = 0 || game->p != 1 || game->e != 1)
+	if (game->food == 0 || game->p != 1 || game->e != 1)
 		return (0);
 	return (1);
 }
 
 int	check_path(int x, int y, t_game *game)
 {
-	if (game->matriz[i][j] == '0' || game->matriz[i][j] == 'P' || game->matriz[i][j] == 'C' || game->matriz[i][j] == 'E')
+	if (game->matriz[x][y] == '0' || game->matriz[x][y] == 'P' ||
+		game->matriz[x][y] == 'C' || game->matriz[x][y] == 'E')
 	{
 		if (game->matriz[x][y] == '0')
 			game->matriz[x][y] = '-';

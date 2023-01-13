@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/11 21:41:57 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:29:46 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	game.matriz = map_cpy(fd, argv[1], &game);
 	if (!game.matriz)
 		return (0);
-	if (!(check_path(game.p_x, game.p_y, game)))
+	if (!(check_path(game.p_x, game.p_y, &game)))
 		return (0);
 	game.large = ft_strlen(game.matriz[0]);
 	open_wdw(&game);

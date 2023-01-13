@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/12 10:19:44 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:29:09 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		open_wdw(t_game *game);
 char	**map_cpy(int fd, char *argv, t_game	*game);
 char	**wall_check(t_game *game);
 int		check_cpe(char **matriz, t_game *game);
+int		check_path(int x, int y, t_game *game);
 void	imgs_init(t_game *game);
 void	img_to_window(t_game *game);
 void	ifs(t_game *game);
