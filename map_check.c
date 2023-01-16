@@ -63,8 +63,6 @@ int	wall_check(t_game *game)
 			return (0);
 		i++;
 	}
-	write(1, "\nChecking map components...\n\n", 30);
-	write(1, "------------------\n\n", 20);
 	return (check_path_check(game->matriz, game));
 }
 
@@ -77,23 +75,35 @@ int	check_cpe(char **matriz, t_game *game)
 		game->j = -1;
 		while (++game->j < game->large)
 		{
-			if (matriz[game->i][game->j] == 'C')
-				game->food++;
-			else if (matriz[game->i][game->j] == 'P')
-			{
-				game->p++;
-				game->p_x = game->j;
-				game->p_y = game->i;
-			}
-			else if (matriz[game->i][game->j] == 'E')
-				game->e++;
-			else if (matriz[game->i][game->j] != '0' &&
-				matriz[game->i][game->large] != '\n' &&
-				matriz[game->i][game->j] != '1')
+			if (!check_cpe_ifs(matriz, game))
 				return (0);
 		}
 	}
 	if (game->food == 0 || game->p != 1 || game->e != 1)
+		return (0);
+	return (1);
+}
+
+// ifs a parte pq mais de 25 linhas
+int	check_cpe_ifs(char **matriz, t_game *game)
+{
+	if (matriz[game->i][game->j] == 'C')
+		game->food++;
+	else if (matriz[game->i][game->j] == 'P')
+	{
+		game->p++;
+		game->p_x = game->j;
+		game->p_y = game->i;
+	}
+	else if (matriz[game->i][game->j] == 'E')
+	{
+		game->e++;
+		game->end_x = game->j;
+		game->end_y = game->i;
+	}
+	else if (matriz[game->i][game->j] != '0' &&
+		matriz[game->i][game->large] != '\n' &&
+		matriz[game->i][game->j] != '1')
 		return (0);
 	return (1);
 }
@@ -120,30 +130,4 @@ int	check_path_check(char **matriz, t_game *game)
 	if (i != game->food || game->p != 1 || game->e != 1)
 		return (0);
 	return (1);
-}
-
-// verifica se o p tem um caminho de 0's ate todos os C e o E
-int	check_path(int x, int y, t_game *game)
-{
-	if (game->matriz[x][y] == '0' || game->matriz[x][y] == 'P' ||
-		game->matriz[x][y] == 'C' || game->matriz[x][y] == 'E')
-	{
-		if (game->matriz[x][y] == '0')
-			game->matriz[x][y] = '-';
-		if (game->matriz[x][y] == 'C')
-			game->matriz[x][y] = 'c';
-		if (game->matriz[x][y] == 'P')
-			game->matriz[x][y] = 'p';
-		if (game->matriz[x][y] == 'E')
-			game->matriz[x][y] = 'e';
-		if (check_path(x, y - 1, game))
-			return (1);
-		if (check_path(x + 1, y, game))
-			return (1);
-		if (check_path(x, y + 1, game))
-			return (1);
-		if (check_path(x - 1, y, game))
-			return (1);
-	}
-	return (0);
 }
