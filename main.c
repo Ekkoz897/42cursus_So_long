@@ -12,23 +12,38 @@
 
 #include "so_long.h"
 
-int	game_start(t_game *game, char *map)
+int	main(int argc, char **argv)
 {
-	int	fd;
+	int		fd;
+	t_game	game;
 
-	vars_init(game);
-	fd = open(map, O_RDONLY);
+	if (argc != 2)
+		return (0);
+	fd = open(argv[1], O_RDONLY);
+	vars_init(&game);
+	game_start(&game, argv[1], fd);
+	return (0);
+}
+
+int	game_start(t_game *game, char *map, int fd)
+{
 	game->matriz = map_cpy(fd, map, game);
 	if (!game->matriz)
+	{
+		write(1, "\nError\nThe provided map is invalid.\n\n", 38);
 		return (0);
+	}
 	check_path(game->p_y, game->p_x, game);
 	if (wall_check(game))
 	{
-		write(1, "The map is valid, launching game...\n\n", 38);
+		write(1, "\nThe map is valid, launching game...\n\n", 38);
 		write(1, "------------------\n\n", 20);
 	}
 	else
+	{
+		write(1, "\nError\nThe player can't access all the collectibles.\n\n", 55);
 		return (0);
+	}
 	open_wdw(game);
 	imgs_init(game);
 	mlx_hook(game->wdw, 2, 1L << 0, keydown, game);
@@ -40,12 +55,28 @@ int	game_start(t_game *game, char *map)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+// verifica se o p tem um caminho de 0's ate todos os C e o E
+int	check_path(int x, int y, t_game *game)
 {
-	t_game	game;
-
-	if (argc != 2)
-		return (0);
-	game_start(&game, argv[1]);
+	if (game->matriz[x][y] == '0' || game->matriz[x][y] == 'P' ||
+		game->matriz[x][y] == 'C' || game->matriz[x][y] == 'E')
+	{
+		if (game->matriz[x][y] == '0')
+			game->matriz[x][y] = '-';
+		if (game->matriz[x][y] == 'C')
+			game->matriz[x][y] = 'c';
+		if (game->matriz[x][y] == 'P')
+			game->matriz[x][y] = 'p';
+		if (game->matriz[x][y] == 'E')
+			game->matriz[x][y] = 'e';
+		if (check_path(x, y - 1, game))
+			return (1);
+		if (check_path(x + 1, y, game))
+			return (1);
+		if (check_path(x, y + 1, game))
+			return (1);
+		if (check_path(x - 1, y, game))
+			return (1);
+	}
 	return (0);
 }
