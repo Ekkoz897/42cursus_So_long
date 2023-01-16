@@ -34,10 +34,14 @@ int	destroy_wdw(t_game *game)
 	int	i;
 
 	mlx_destroy_image(game->mlx, game->t_img.c);
-	mlx_destroy_image(game->mlx, game->t_img.e);
+	mlx_destroy_image(game->mlx, game->t_img.open);
+	mlx_destroy_image(game->mlx, game->t_img.closed);
 	mlx_destroy_image(game->mlx, game->t_img.one);
-	mlx_destroy_image(game->mlx, game->t_img.p);
+	mlx_destroy_image(game->mlx, game->t_img.pr);
+	mlx_destroy_image(game->mlx, game->t_img.pu);
+	mlx_destroy_image(game->mlx, game->t_img.pl);
 	mlx_destroy_image(game->mlx, game->t_img.zero);
+	mlx_destroy_image(game->mlx, game->t_img.ded);
 	mlx_clear_window(game->mlx, game->wdw);
 	mlx_destroy_window(game->mlx, game->wdw);
 	mlx_destroy_display(game->mlx);
@@ -62,21 +66,29 @@ void	ifs(t_game *game)
 	else if (game->matriz[game->i][game->j] == 'c')
 		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.c,
 			game->j * 64, game->i * 64);
+	else if (game->matriz[game->i][game->j] == 'C')
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.ded,
+			game->j * 64, game->i * 64);
 	else if (game->matriz[game->i][game->j] == 'e')
-		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.e,
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.closed,
+			game->j * 64, game->i * 64);
+	else if (game->matriz[game->i][game->j] == 'E')
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.open,
+			game->j * 64, game->i * 64);
+	else
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.zero,
 			game->j * 64, game->i * 64);
 }
 
 void	img_to_window(t_game *game)
 {
 	game->i = 0;
+	food_collector(game);
 	while (game->i < game->tall)
 	{
 		game->j = 0;
 		while (game->j < game->large)
 		{
-			mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.zero,
-				game->j * 64, game->i * 64);
 			ifs(game);
 			game->j++;
 		}
