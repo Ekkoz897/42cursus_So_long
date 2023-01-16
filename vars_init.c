@@ -28,6 +28,8 @@ void	vars_init(t_game	*game)
 	game->p_y = 0;
 	game->pp_x = 0;
 	game->pp_y = 0;
+	game->end_x = 0;
+	game->end_y = 0;
 	game->i = 0;
 	game->j = 0;
 	game->w = 0;
@@ -38,16 +40,23 @@ void	vars_init(t_game	*game)
 
 void	imgs_init(t_game *game)
 {
-	game->img = 0;
 	game->t_img.zero = mlx_xpm_file_to_image(game->mlx, "images/0.xpm",
 			&game->pixel, &game->pixel);
 	game->t_img.one = mlx_xpm_file_to_image(game->mlx, "images/1.xpm",
 			&game->pixel, &game->pixel);
-	game->t_img.p = mlx_xpm_file_to_image(game->mlx, "images/right.xpm",
+	game->t_img.pr = mlx_xpm_file_to_image(game->mlx, "images/right.xpm",
+			&game->pixelp, &game->pixelp);
+	game->t_img.pl = mlx_xpm_file_to_image(game->mlx, "images/left.xpm",
+			&game->pixelp, &game->pixelp);
+	game->t_img.pu = mlx_xpm_file_to_image(game->mlx, "images/up.xpm",
 			&game->pixelp, &game->pixelp);
 	game->t_img.c = mlx_xpm_file_to_image(game->mlx, "images/c.xpm",
 			&game->pixel, &game->pixel);
-	game->t_img.e = mlx_xpm_file_to_image(game->mlx, "images/e.xpm",
+	game->t_img.open = mlx_xpm_file_to_image(game->mlx, "images/open.xpm",
+			&game->pixel, &game->pixel);
+	game->t_img.closed = mlx_xpm_file_to_image(game->mlx, "images/closed.xpm",
+			&game->pixel, &game->pixel);
+	game->t_img.ded = mlx_xpm_file_to_image(game->mlx, "images/dead.xpm",
 			&game->pixel, &game->pixel);
 }
 
