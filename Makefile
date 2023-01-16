@@ -1,4 +1,5 @@
 #fazer com que as sprites inacessiveis sejam especiais, imagem diferente etc...
+#quando mato um among us, spawna um enimigo como ghost among us
 
 NAME = so_long
 
@@ -8,7 +9,7 @@ RM = rm -f
 
 FLAGS = -Wall -Werror -Wextra
 
-SRC = map_check.c main.c keys.c vars_init.c window.c
+SRC = map_check.c main.c keys.c vars_init.c window.c animations.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 
@@ -19,22 +20,25 @@ GNL_OBJ = $(GNL_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@echo "\nCompiling the game files...\n"
-#	@make -s -C mlx_linux
+	@echo "\nCompiling the game files..."
+	@make -s -C mlx_linux
 	@$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
 
 map1:
-	@echo "\nLoading the map"
+	@echo "\n------------------"
+	@echo "\nChecking map components..."
 	@echo "\n------------------"
 	@./so_long maps/map1.ber
 
 map2:
-	@echo "\nLoading the map"
+	@echo "\n------------------"
+	@echo "\nChecking map components..."
 	@echo "\n------------------"
 	@./so_long maps/map2.ber
 
 map3:
-	@echo "\nLoading the map"
+	@echo "\n------------------"
+	@echo "\nChecking map components..."
 	@echo "\n------------------"
 	@./so_long maps/map3.ber
 
