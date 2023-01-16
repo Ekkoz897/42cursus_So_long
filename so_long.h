@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 18:56:23 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:07:54 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_game
 	int		p;
 	int		e;
 	int		pixel;
+	int		pixelp;
 	int		p_x;
 	int		p_y;
 	int		pp_x;

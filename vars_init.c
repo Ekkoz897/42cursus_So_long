@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 18:56:08 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:08:14 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	vars_init(t_game	*game)
 	game->p = 0;
 	game->e = 0;
 	game->pixel = 64;
+	game->pixelp = 25;
 	game->p_x = 0;
 	game->p_y = 0;
 	game->pp_x = 0;
@@ -43,7 +44,7 @@ void	imgs_init(t_game *game)
 	game->t_img.one = mlx_xpm_file_to_image(game->mlx, "images/1.xpm",
 			&game->pixel, &game->pixel);
 	game->t_img.p = mlx_xpm_file_to_image(game->mlx, "images/right.xpm",
-			&game->pixel, &game->pixel);
+			&game->pixelp, &game->pixelp);
 	game->t_img.c = mlx_xpm_file_to_image(game->mlx, "images/c.xpm",
 			&game->pixel, &game->pixel);
 	game->t_img.e = mlx_xpm_file_to_image(game->mlx, "images/e.xpm",

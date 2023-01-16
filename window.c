@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 18:56:15 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:37:48 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	open_wdw(t_game *game)
 		free (game->mlx);
 		return (0);
 	}
-	game->pp_x = game->p_x * 64;
-	game->pp_y = game->p_y * 64;
+	game->pp_x = (game->p_x * 64) + 12;
+	game->pp_y = (game->p_y * 64) + 12;
 	return (1);
 }
 
@@ -65,9 +65,6 @@ void	ifs(t_game *game)
 	else if (game->matriz[game->i][game->j] == 'e')
 		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.e,
 			game->j * 64, game->i * 64);
-	else
-		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.zero,
-			game->pp_x, game->pp_y);
 }
 
 void	img_to_window(t_game *game)

@@ -20,7 +20,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "\nCompiling the game files...\n"
-	@make -s -C mlx_linux
+#	@make -s -C mlx_linux
 	@$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
 
 map1:
