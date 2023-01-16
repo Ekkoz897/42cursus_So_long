@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/16 13:39:27 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:49:25 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	game_start(t_game *game, char *map, int fd)
 	mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, game);
 	mlx_loop_hook(game->mlx, p_move, game);
 	mlx_loop(game->mlx);
-	destroy_wdw(game);
 	return (0);
 }
 
