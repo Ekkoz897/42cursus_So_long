@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/16 13:18:39 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:51:19 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_game
 		void	*pu;
 		void	*open;
 		void	*closed;
+		void	*end;
 	}t_img;
 	void	*wdw;
 	void	*mlx;
@@ -55,7 +56,7 @@ typedef struct s_game
 	int		d;
 }t_game;
 
-int		game_start(t_game *game, char *map, int fd);
+int		game_start(t_game *game);
 int		ft_strlen(const char *str);
 int		key_press(t_game *game);
 int		keydown(int key, t_game *game);
@@ -75,5 +76,7 @@ void	img_to_window(t_game *game);
 void	ifs(t_game *game);
 int		p_move(t_game *game);
 void	player_anim(t_game *game);
+void	exit_reached(t_game *game);
+int		display_victory(t_game *game);
 
 #endif

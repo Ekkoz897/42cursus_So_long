@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/16 13:06:40 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:40:01 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	vars_init(t_game	*game)
 	game->p = 0;
 	game->e = 0;
 	game->pixel = 64;
-	game->pixelp = 25;
+	game->pixelp = 40;
 	game->p_x = 0;
 	game->p_y = 0;
 	game->pp_x = 0;
@@ -58,6 +58,10 @@ void	imgs_init(t_game *game)
 			&game->pixel, &game->pixel);
 	game->t_img.ded = mlx_xpm_file_to_image(game->mlx, "images/dead.xpm",
 			&game->pixel, &game->pixel);
+	game->pixel = 700;
+	game->pixelp = 700;
+	game->t_img.end = mlx_xpm_file_to_image(game->mlx, "images/victory.xpm",
+			&game->pixel, &game->pixelp);
 }
 
 int	ft_strlen(const char *str)

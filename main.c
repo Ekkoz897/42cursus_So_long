@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/16 13:49:25 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:51:13 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int	main(int argc, char **argv)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	vars_init(&game);
-	game_start(&game, argv[1], fd);
-	return (0);
-}
-
-int	game_start(t_game *game, char *map, int fd)
-{
-	game->matriz = map_cpy(fd, map, game);
-	if (!game->matriz)
+	game.matriz = map_cpy(fd, argv[1], &game);
+	if (!game.matriz)
 	{
 		write(1, "\nError\nThe provided map is invalid.\n\n", 38);
 		return (0);
 	}
+	game_start(&game);
+	return (0);
+}
+
+int	game_start(t_game *game)
+{
 	check_path(game->p_y, game->p_x, game);
 	if (wall_check(game))
 	{

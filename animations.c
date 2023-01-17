@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:23 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/16 13:11:13 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:02:21 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,31 @@ void	player_anim(t_game *game)
 		img = game->t_img.pr;
 	mlx_put_image_to_window(game->mlx, game->wdw, img,
 		game->pp_x, game->pp_y);
+}
+
+int	display_victory(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->wdw);
+	mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.end,
+		(game->large * 64) / 10, (game->tall * 64) / 8);
+	while (1)
+	{
+		mlx_hook(game->wdw, 2, 1L << 0, keydown, game);
+		mlx_hook(game->wdw, 3, 1L << 1, keyup, game);
+		mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, game);
+		mlx_loop(game->mlx);
+	}
+	return (0);
+}
+
+void	exit_reached(t_game *game)
+{
+	if (game->matriz[game->pp_y / 64][(game->pp_x + 19) / 64] == 'E')
+		game->p++;
+	if (game->matriz[(game->pp_y + 19) / 64][(game->pp_x + 39) / 64] == 'E')
+		game->p++;
+	if (game->matriz[(game->pp_y + 39) / 64][(game->pp_x + 19) / 64] == 'E')
+		game->p++;
+	if (game->matriz[(game->pp_y + 19) / 64][game->pp_x / 64] == 'E')
+		game->p++;
 }

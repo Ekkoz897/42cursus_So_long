@@ -1,4 +1,3 @@
-#fazer com que as sprites inacessiveis sejam especiais, imagem diferente etc...
 #quando mato um among us, spawna um enimigo como ghost among us
 
 NAME = so_long
