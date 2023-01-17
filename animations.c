@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:23 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 14:02:21 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:17:42 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ int	display_victory(t_game *game)
 	mlx_clear_window(game->mlx, game->wdw);
 	mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.end,
 		(game->large * 64) / 10, (game->tall * 64) / 8);
-	while (1)
-	{
-		mlx_hook(game->wdw, 2, 1L << 0, keydown, game);
-		mlx_hook(game->wdw, 3, 1L << 1, keyup, game);
-		mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, game);
-		mlx_loop(game->mlx);
-	}
+	game->p++;
 	return (0);
 }
 
