@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:23 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 21:34:56 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:29:44 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,3 @@ void	player_anim(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->wdw, img,
 		game->pp_x, game->pp_y);
 }
-
-

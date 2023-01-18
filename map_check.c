@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/16 13:28:56 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:40:21 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,30 @@ int	check_cpe(char **matriz, t_game *game)
 int	check_cpe_ifs(char **matriz, t_game *game)
 {
 	if (matriz[game->i][game->j] == 'C')
+	{
 		game->food++;
+		return (1);
+	}
 	else if (matriz[game->i][game->j] == 'P')
 	{
 		game->p++;
 		game->p_x = game->j;
 		game->p_y = game->i;
+		return (1);
 	}
 	else if (matriz[game->i][game->j] == 'E')
 	{
 		game->e++;
 		game->end_x = game->j;
 		game->end_y = game->i;
+		return (1);
 	}
-	else if (matriz[game->i][game->j] != '0' &&
-		matriz[game->i][game->large] != '\n' &&
-		matriz[game->i][game->j] != '1')
-		return (0);
-	return (1);
+	else if (matriz[game->i][game->j] == '0' ||
+		matriz[game->i][game->large] == '\n' ||
+		matriz[game->i][game->j] == '1' ||
+		matriz[game->i][game->j] == 'G')
+		return (1);
+	return (0);
 }
 
 // verifica se o resultado do path_check e valido

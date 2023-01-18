@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 13:40:01 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:31:59 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	imgs_init(t_game *game)
 	game->t_img.closed = mlx_xpm_file_to_image(game->mlx, "images/closed.xpm",
 			&game->pixel, &game->pixel);
 	game->t_img.ded = mlx_xpm_file_to_image(game->mlx, "images/dead.xpm",
+			&game->pixel, &game->pixel);
+	game->t_img.water = mlx_xpm_file_to_image(game->mlx, "images/water.xpm",
 			&game->pixel, &game->pixel);
 	game->pixel = 700;
 	game->pixelp = 700;

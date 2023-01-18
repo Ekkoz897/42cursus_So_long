@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 21:29:16 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:31:22 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	ifs(t_game *game)
 			game->j * 64, game->i * 64);
 	else if (game->matriz[game->i][game->j] == 'E')
 		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.open,
+			game->j * 64, game->i * 64);
+	else if (game->matriz[game->i][game->j] == 'G')
+		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.water,
 			game->j * 64, game->i * 64);
 	else
 		mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.zero,

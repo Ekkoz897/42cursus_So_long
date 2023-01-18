@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 21:35:14 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:33:57 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_game
 		void	*open;
 		void	*closed;
 		void	*end;
+		void	*water;
 	}t_img;
 	void	*wdw;
 	void	*mlx;
