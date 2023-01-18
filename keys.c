@@ -69,17 +69,3 @@ int	p_move(t_game *game)
 	return (0);
 }
 
-int	keydown_end(int key, t_game *game)
-{
-	if (key == 'a')
-		game->a = 1;
-	else if (key == 'w')
-		game->w = 1;
-	else if (key == 's')
-		game->s = 1;
-	else if (key == 'd')
-		game->d = 1;
-	else if (key == 65307)
-		end_game(game);
-	return (0);
-}

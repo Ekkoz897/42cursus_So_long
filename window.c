@@ -95,13 +95,3 @@ void	img_to_window(t_game *game)
 		game->i++;
 	}
 }
-
-int	end_game(t_game *game)
-{
-	mlx_destroy_image(game->mlx, game->t_img.end);
-	mlx_clear_window(game->mlx, game->wdw);
-	mlx_destroy_window(game->mlx, game->wdw);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-	exit (0);
-}
