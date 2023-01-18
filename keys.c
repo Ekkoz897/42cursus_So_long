@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/18 10:30:36 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:02:38 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,39 @@ int	keyup(int key, t_game *game)
 	return (0);
 }
 
+void	p_move_ifs(t_game *game)
+{
+	if (game->matriz[game->pp_y / 64][(game->pp_x - 1) / 64] != '1' &&
+		game->matriz[(game->pp_y + 39) / 64][(game->pp_x - 1) / 64] != '1')
+		if (game->a == 1)
+			game->pp_x--;
+	if (game->matriz[(game->pp_y - 1) / 64][game->pp_x / 64] != '1' &&
+		game->matriz[(game->pp_y - 1) / 64][(game->pp_x + 39) / 64] != '1')
+		if (game->w == 1)
+			game->pp_y--;
+	if (game->matriz[(game->pp_y + 40) / 64][(game->pp_x) / 64] != '1' &&
+		game->matriz[(game->pp_y + 40) / 64][(game->pp_x + 39) / 64] != '1')
+		if (game->s == 1)
+			game->pp_y++;
+	if (game->matriz[game->pp_y / 64][(game->pp_x + 40) / 64] != '1' &&
+		game->matriz[(game->pp_y + 39) / 64][(game->pp_x + 40) / 64] != '1')
+		if (game->d == 1)
+			game->pp_x++;
+}
+
 int	p_move(t_game *game)
 {
 	if (game->p == 1)
 	{
 		img_to_window(game);
-		if (game->matriz[game->pp_y / 64][(game->pp_x - 1) / 64] != '1' &&
-			game->matriz[(game->pp_y + 39) / 64][(game->pp_x - 1) / 64] != '1')
-			if (game->a == 1)
-				game->pp_x--;
-		if (game->matriz[(game->pp_y - 1) / 64][game->pp_x / 64] != '1' &&
-			game->matriz[(game->pp_y - 1) / 64][(game->pp_x + 39) / 64] != '1')
-			if (game->w == 1)
-				game->pp_y--;
-		if (game->matriz[(game->pp_y + 40) / 64][(game->pp_x) / 64] != '1' &&
-			game->matriz[(game->pp_y + 40) / 64][(game->pp_x + 39) / 64] != '1')
-			if (game->s == 1)
-				game->pp_y++;
-		if (game->matriz[game->pp_y / 64][(game->pp_x + 40) / 64] != '1' &&
-			game->matriz[(game->pp_y + 39) / 64][(game->pp_x + 40) / 64] != '1')
-			if (game->d == 1)
-				game->pp_x++;
+		p_move_ifs(game);
 		player_anim(game);
 		exit_check(game);
+		enemy_check(game);
 	}
 	else if (game->p == 2)
-		close_first_window(game);
+		close_first_window(game, 1);
+	else if (game->p == 3)
+		close_first_window(game, 2);
 	return (0);
 }
