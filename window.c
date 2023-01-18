@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 13:53:41 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:29:16 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	ifs(t_game *game)
 
 void	img_to_window(t_game *game)
 {
-	game->i = 0;
 	food_collector(game);
+	game->i = 0;
 	while (game->i < game->tall)
 	{
 		game->j = 0;
@@ -94,4 +94,14 @@ void	img_to_window(t_game *game)
 		}
 		game->i++;
 	}
+}
+
+int	end_game(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->t_img.end);
+	mlx_clear_window(game->mlx, game->wdw);
+	mlx_destroy_window(game->mlx, game->wdw);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:23 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 14:17:42 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:34:56 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,52 @@ void	player_anim(t_game *game)
 		game->pp_x, game->pp_y);
 }
 
-int	display_victory(t_game *game)
+void	display_victory(t_game game)
 {
-	mlx_clear_window(game->mlx, game->wdw);
-	mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.end,
-		(game->large * 64) / 10, (game->tall * 64) / 8);
-	game->p++;
-	return (0);
+	game.p++;
+	game.mlx = mlx_init();
+	mlx_clear_window(game.mlx, game.wdw);
+	mlx_destroy_window(game.mlx, game.wdw);
+	game.wdw = mlx_new_window(game.mlx, 1000, 560, "Congratulations !");
+	if (!game.wdw)
+	{
+		free (game.mlx);
+		return ;
+	}
+	mlx_put_image_to_window(game.mlx, game.wdw, game.t_img.end,
+		0, 0);
+	mlx_hook(game.wdw, 2, 1L << 0, keydown_end, &game);
+	mlx_hook(game.wdw, 17, 1L << 17, end_game, &game);
+	mlx_loop(game.mlx);
 }
 
-void	exit_reached(t_game *game)
+void	close_first_window(t_game *game)
+{
+	int	i;
+
+	mlx_destroy_image(game->mlx, game->t_img.c);
+	mlx_destroy_image(game->mlx, game->t_img.open);
+	mlx_destroy_image(game->mlx, game->t_img.closed);
+	mlx_destroy_image(game->mlx, game->t_img.one);
+	mlx_destroy_image(game->mlx, game->t_img.pr);
+	mlx_destroy_image(game->mlx, game->t_img.pu);
+	mlx_destroy_image(game->mlx, game->t_img.pl);
+	mlx_destroy_image(game->mlx, game->t_img.zero);
+	mlx_destroy_image(game->mlx, game->t_img.ded);
+	free(game->mlx);
+	i = 0;
+	while (game->matriz[i])
+	{
+		free(game->matriz[i]);
+		i++;
+	}
+	get_next_line(-1);
+	free (game->matriz[i]);
+	free (game->matriz);
+	display_victory(*game);
+}
+
+void	exit_check(t_game *game)
 {
 	if (game->matriz[game->pp_y / 64][(game->pp_x + 19) / 64] == 'E')
 		game->p++;

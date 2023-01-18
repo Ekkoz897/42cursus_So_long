@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 14:00:48 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:34:48 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	p_move(t_game *game)
 	if (game->p == 1)
 	{
 		img_to_window(game);
-		player_anim(game);
 		if (game->matriz[game->pp_y / 64][(game->pp_x - 1) / 64] != '1' &&
 			game->matriz[(game->pp_y + 39) / 64][(game->pp_x - 1) / 64] != '1')
 			if (game->a == 1)
@@ -62,9 +61,25 @@ int	p_move(t_game *game)
 			game->matriz[(game->pp_y + 39) / 64][(game->pp_x + 40) / 64] != '1')
 			if (game->d == 1)
 				game->pp_x++;
-		exit_reached(game);
+		player_anim(game);
+		exit_check(game);
 	}
 	else if (game->p == 2)
-		display_victory(game);
+		close_first_window(game);
+	return (0);
+}
+
+int	keydown_end(int key, t_game *game)
+{
+	if (key == 'a')
+		game->a = 1;
+	else if (key == 'w')
+		game->w = 1;
+	else if (key == 's')
+		game->s = 1;
+	else if (key == 'd')
+		game->d = 1;
+	else if (key == 65307)
+		end_game(game);
 	return (0);
 }

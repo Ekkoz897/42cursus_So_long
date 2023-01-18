@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/17 13:51:19 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:35:14 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void	img_to_window(t_game *game);
 void	ifs(t_game *game);
 int		p_move(t_game *game);
 void	player_anim(t_game *game);
-void	exit_reached(t_game *game);
-int		display_victory(t_game *game);
+void	exit_check(t_game *game);
+void	close_first_window(t_game *game);
+void	display_victory(t_game game);
+int		keydown_end(int key, t_game *game);
+int		end_game(t_game *game);
 
 #endif
