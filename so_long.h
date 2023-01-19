@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 17:17:43 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:22:06 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	enemy_check(t_game *game);
 void	display_loss(t_game game);
 
 void	*ft_itoa(int n);
+void	destroy_images(t_game *game);
 
 #endif

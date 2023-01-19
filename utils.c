@@ -1,43 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vars_init.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 16:56:20 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:41:58 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	vars_init(t_game	*game)
-{
-	game->wdw = 0;
-	game->wdw2 = 0;
-	game->mlx = 0;
-	game->matriz = 0;
-	game->tall = 0;
-	game->large = 0;
-	game->food = 0;
-	game->p = 0;
-	game->e = 0;
-	game->pixel = 64;
-	game->pixelp = 40;
-	game->p_x = 0;
-	game->p_y = 0;
-	game->pp_x = 0;
-	game->pp_y = 0;
-	game->end_x = 0;
-	game->end_y = 0;
-	game->i = 0;
-	game->j = 0;
-	game->w = 0;
-	game->a = 0;
-	game->s = 0;
-	game->d = 0;
-}
 
 void	imgs_init(t_game *game)
 {
@@ -67,6 +40,33 @@ void	imgs_init(t_game *game)
 			&game->pixel, &game->pixelp);
 }
 
+void	vars_init(t_game	*game)
+{
+	game->wdw = 0;
+	game->wdw2 = 0;
+	game->mlx = 0;
+	game->matriz = 0;
+	game->tall = 0;
+	game->large = 0;
+	game->food = 0;
+	game->p = 0;
+	game->e = 0;
+	game->pixel = 64;
+	game->pixelp = 40;
+	game->p_x = 0;
+	game->p_y = 0;
+	game->pp_x = 0;
+	game->pp_y = 0;
+	game->end_x = 0;
+	game->end_y = 0;
+	game->i = 0;
+	game->j = 0;
+	game->w = 0;
+	game->a = 0;
+	game->s = 0;
+	game->d = 0;
+}
+
 int	ft_strlen(const char *str)
 {
 	int	i;
@@ -84,7 +84,6 @@ int	ft_strlen(const char *str)
 void	*ft_itoa(int n)
 {
 	char	*array;
-	char	*rray;
 	int		digits;
 	int		g;
 
@@ -92,24 +91,37 @@ void	*ft_itoa(int n)
 	g = n;
 	if (n == 0)
 	{
-	rray = malloc(2);
-	rray[0] = '0';
-	rray[1] = '\0'; 
-		return (rray);
+		array = ft_calloc2(2, 1);
+		array[0] = '0';
+		return (array);
 	}
 	while (n != 0)
 	{
 		n /= 10;
 		digits++;
 	}
-	array = (char *)malloc(digits + 1);
-	if (!array)
-		return (NULL);
+	array = malloc(digits + 1);
 	array[digits] = '\0';
 	while (g != 0 && digits >= 0)
 	{
 		array[digits-- - 1] = g % 10 + '0';
 		g /= 10;
 	}
-	return ((void *)array);
+	return (array);
+}
+
+void	destroy_images(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->t_img.c);
+	mlx_destroy_image(game->mlx, game->t_img.open);
+	mlx_destroy_image(game->mlx, game->t_img.closed);
+	mlx_destroy_image(game->mlx, game->t_img.one);
+	mlx_destroy_image(game->mlx, game->t_img.pr);
+	mlx_destroy_image(game->mlx, game->t_img.pu);
+	mlx_destroy_image(game->mlx, game->t_img.pl);
+	mlx_destroy_image(game->mlx, game->t_img.zero);
+	mlx_destroy_image(game->mlx, game->t_img.ded);
+	mlx_destroy_image(game->mlx, game->t_img.won);
+	mlx_destroy_image(game->mlx, game->t_img.lost);
+	mlx_destroy_image(game->mlx, game->t_img.water);
 }

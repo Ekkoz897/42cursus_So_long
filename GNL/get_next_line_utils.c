@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:27:35 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 13:49:58 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:38:12 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		return (NULL);
 	if (ft_strlen2(s + start) <= len)
 		len = ft_strlen2(s + start);
-	sub = ft_calloc(len + 1, 1);
+	sub = ft_calloc2(len + 1, 1);
 	if (!sub)
 		return (NULL);
 	i = start;
@@ -60,7 +60,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc2(size_t nmemb, size_t size)
 {
 	char	*array;
 	size_t	i;

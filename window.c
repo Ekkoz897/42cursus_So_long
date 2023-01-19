@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 17:16:33 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:21:17 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,7 @@ int	destroy_wdw(t_game *game)
 {
 	int	i;
 
-	mlx_destroy_image(game->mlx, game->t_img.c);
-	mlx_destroy_image(game->mlx, game->t_img.open);
-	mlx_destroy_image(game->mlx, game->t_img.closed);
-	mlx_destroy_image(game->mlx, game->t_img.one);
-	mlx_destroy_image(game->mlx, game->t_img.pr);
-	mlx_destroy_image(game->mlx, game->t_img.pu);
-	mlx_destroy_image(game->mlx, game->t_img.pl);
-	mlx_destroy_image(game->mlx, game->t_img.zero);
-	mlx_destroy_image(game->mlx, game->t_img.ded);
-	mlx_destroy_image(game->mlx, game->t_img.won);
-	mlx_destroy_image(game->mlx, game->t_img.lost);
-	mlx_destroy_image(game->mlx, game->t_img.water);
+	destroy_images(game);
 	if (game->wdw2)
 	{
 		mlx_clear_window(game->mlx, game->wdw2);

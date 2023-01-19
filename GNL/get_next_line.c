@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:41:39 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 14:44:37 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:38:00 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (!temp)
-		temp = ft_calloc (1, 1);
+		temp = ft_calloc2(1, 1);
 	temp = read_into_temp(fd, temp);
 	if (temp[0] == '\0')
 	{
@@ -57,7 +57,7 @@ char	*read_into_temp(int fd, char *temp)
 	char	*buff;
 
 	read_ret = 1;
-	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buff = ft_calloc2(BUFFER_SIZE + 1, sizeof(char));
 	while (!ft_strchr(temp, '\n') && read_ret != 0)
 	{
 		read_ret = (int)read(fd, buff, BUFFER_SIZE);
@@ -104,7 +104,7 @@ char	*ft_cleartemp(char *src, int len)
 		free(src);
 		return (0);
 	}
-	temp = ft_calloc(ft_strlen2(src) - len + 1, sizeof(char));
+	temp = ft_calloc2(ft_strlen2(src) - len + 1, sizeof(char));
 	len++;
 	while (src[len])
 		temp[i++] = src[len++];

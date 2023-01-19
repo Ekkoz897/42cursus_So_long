@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:25:43 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/13 13:46:21 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:37:44 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen2(const char *str);
 char	*ft_cleartemp(char *src, int len);
 char	*ft_substr(char *s, unsigned int start, size_t len);
-void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_calloc2(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 
 #endif
