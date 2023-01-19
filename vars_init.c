@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/18 11:37:26 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:17:06 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	vars_init(t_game	*game)
 {
+	game->win_visible = 1;
 	game->wdw = 0;
 	game->mlx = 0;
 	game->matriz = 0;
@@ -78,4 +79,37 @@ int	ft_strlen(const char *str)
 		i++;
 	}
 	return (i);
+}
+
+void	*ft_itoa(int n)
+{
+	char	*array;
+	char	*rray;
+	int		digits;
+	int		g;
+
+	digits = 0;
+	g = n;
+	if (n == 0)
+	{
+	rray = malloc(2);
+	rray[0] = '0';
+	rray[1] = '\0'; 
+		return (rray);
+	}
+	while (n != 0)
+	{
+		n /= 10;
+		digits++;
+	}
+	array = (char *)malloc(digits + 1);
+	if (!array)
+		return (NULL);
+	array[digits] = '\0';
+	while (g != 0 && digits >= 0)
+	{
+		array[digits-- - 1] = g % 10 + '0';
+		g /= 10;
+	}
+	return ((void *)array);
 }

@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:45:23 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/18 10:29:44 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:12:03 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	food_collector(t_game *game)
 		game->matriz[game->end_y][game->end_x] = 'E';
 }
 
-void	player_anim(t_game *game)
+int	player_anim(t_game *game)
 {
 	void	*img;
 
@@ -53,4 +53,7 @@ void	player_anim(t_game *game)
 		img = game->t_img.pr;
 	mlx_put_image_to_window(game->mlx, game->wdw, img,
 		game->pp_x, game->pp_y);
+	if (!(game->w || game->a || game->s || game->d))
+		return (0);
+	return (1);
 }

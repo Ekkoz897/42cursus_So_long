@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/18 11:02:38 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:19:09 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,13 @@ int	keyup(int key, t_game *game)
 	return (0);
 }
 
-void	p_move_ifs(t_game *game)
+int	p_move_ifs(t_game *game)
 {
+	int	i;
+	int	j;
+
+	i = game->pp_x;
+	j = game->pp_y;
 	if (game->matriz[game->pp_y / 64][(game->pp_x - 1) / 64] != '1' &&
 		game->matriz[(game->pp_y + 39) / 64][(game->pp_x - 1) / 64] != '1')
 		if (game->a == 1)
@@ -58,21 +63,36 @@ void	p_move_ifs(t_game *game)
 		game->matriz[(game->pp_y + 39) / 64][(game->pp_x + 40) / 64] != '1')
 		if (game->d == 1)
 			game->pp_x++;
+	if (i != game->pp_x || j != game->pp_y)
+		return (1);
+	return (0);
 }
 
 int	p_move(t_game *game)
 {
+	static int	count;
+	char		*couunt;
+
 	if (game->p == 1)
 	{
+		couunt = ft_itoa(count / 64);
+		mlx_clear_window(game->mlx, game->wdw);
 		img_to_window(game);
-		p_move_ifs(game);
-		player_anim(game);
+		if (player_anim(game) && p_move_ifs(game))
+			count++;
 		exit_check(game);
 		enemy_check(game);
+		mlx_string_put(game->mlx, game->wdw,
+			(((game->large - 2) * 64) - 32),
+			(game->tall * 64) - 26, 0x000000, "NUMBER OF MOVEMENTS : ");
+		mlx_string_put(game->mlx, game->wdw,
+			(((game->large - 2) * 64) + 100),
+			(game->tall * 64) - 26, 0x000000, couunt);
+		free(couunt);
 	}
 	else if (game->p == 2)
-		close_first_window(game, 1);
+		display_victory(game);
 	else if (game->p == 3)
-		close_first_window(game, 2);
+		display_loss(game);
 	return (0);
 }

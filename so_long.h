@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/18 11:22:10 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:16:37 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_game
 		void	*lost;
 	}t_img;
 	void	*wdw;
+	int		win_visible;
 	void	*mlx;
 	char	**matriz;
 	int		tall;
@@ -82,17 +83,20 @@ void	food_collector(t_game *game);
 void	img_to_window(t_game *game);
 void	ifs(t_game *game);
 int		p_move(t_game *game);
-void	player_anim(t_game *game);
+int		p_move_ifs(t_game *game);
+int		player_anim(t_game *game);
 
 // Post game display win
 void	exit_check(t_game *game);
 void	close_first_window(t_game *game, int flag);
-void	display_victory(t_game game);
+void	display_victory(t_game *game);
 int		keydown_end(int key, t_game *game);
 int		end_game(t_game *game);
 
 // Post game display loss
 void	enemy_check(t_game *game);
-void	display_loss(t_game game);
+void	display_loss(t_game *game);
+
+void	*ft_itoa(int n);
 
 #endif

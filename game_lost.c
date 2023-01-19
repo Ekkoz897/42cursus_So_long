@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:57:01 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/18 11:22:45 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:10:50 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,20 @@ void	enemy_check(t_game *game)
 		game->p += 2;
 }
 
-void	display_loss(t_game game)
+void	display_loss(t_game *game)
 {
-	game.p++;
-	game.mlx = mlx_init();
-	mlx_clear_window(game.mlx, game.wdw);
-	mlx_destroy_window(game.mlx, game.wdw);
-	game.wdw = mlx_new_window(game.mlx, 1000, 560, "Better luck next time !");
-	if (!game.wdw)
+	game->p++;
+	free(game->mlx);
+	game->mlx = mlx_init();
+	game->wdw = mlx_new_window(game->mlx, 1000, 560, "Better luck next time !");
+	if (!game->wdw)
 	{
-		free (game.mlx);
+		free (game->mlx);
 		return ;
 	}
-	mlx_put_image_to_window(game.mlx, game.wdw, game.t_img.lost,
+	mlx_put_image_to_window(game->mlx, game->wdw, game->t_img.lost,
 		0, 0);
-	mlx_hook(game.wdw, 2, 1L << 0, keydown_end, &game);
-	mlx_hook(game.wdw, 17, 1L << 17, end_game, &game);
-	mlx_loop(game.mlx);
+	mlx_hook(game->wdw, 2, 1L << 0, keydown, game);
+	mlx_hook(game->wdw, 17, 1L << 17, destroy_wdw, game);
+	mlx_loop(game->mlx);
 }

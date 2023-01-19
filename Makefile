@@ -19,7 +19,7 @@ GNL_OBJ = $(GNL_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@echo "\nCompiling the game files..."
+	@echo "\nCompiling the game files...\n"
 	@make -s -C mlx_linux
 	@$(CC) -g $(FLAGS) $(SRC) $(addprefix GNL/,$(GNL_SRC)) mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
 
@@ -50,4 +50,4 @@ fclean: clean
 re: fclean all
 
 valgrind:	all
-	valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all ./so_long $(addprefix maps/,$(MAP_SRC))
+	valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all ./so_long maps/map3.ber
