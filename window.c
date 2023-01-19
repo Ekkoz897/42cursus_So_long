@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 15:33:24 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:16:33 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,16 @@ int	destroy_wdw(t_game *game)
 	mlx_destroy_image(game->mlx, game->t_img.won);
 	mlx_destroy_image(game->mlx, game->t_img.lost);
 	mlx_destroy_image(game->mlx, game->t_img.water);
-	mlx_clear_window(game->mlx, game->wdw);
-	mlx_destroy_window(game->mlx, game->wdw);
+	if (game->wdw2)
+	{
+		mlx_clear_window(game->mlx, game->wdw2);
+		mlx_destroy_window(game->mlx, game->wdw2);
+	}
+	if (game->wdw)
+	{	
+		mlx_clear_window(game->mlx, game->wdw);
+		mlx_destroy_window(game->mlx, game->wdw);
+	}
 	mlx_destroy_display(game->mlx);
 	i = 0;
 	while (i < game->tall)

@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:20:33 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 16:17:06 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:56:20 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	vars_init(t_game	*game)
 {
-	game->win_visible = 1;
 	game->wdw = 0;
+	game->wdw2 = 0;
 	game->mlx = 0;
 	game->matriz = 0;
 	game->tall = 0;

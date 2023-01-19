@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 16:19:09 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:29:31 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int	p_move(t_game *game)
 			(game->tall * 64) - 26, 0x000000, couunt);
 		free(couunt);
 	}
-	else if (game->p == 2)
-		display_victory(game);
-	else if (game->p == 3)
-		display_loss(game);
+	else if (game->p == 2 && (game->p)++ && (game->p)++)
+		display_victory(*game);
+	else if (game->p == 3 && game->p++)
+		display_loss(*game);
 	return (0);
 }
