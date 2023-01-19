@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:37:08 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 12:20:11 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:27:28 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	wall_check(t_game *game)
 			return (0);
 		i++;
 	}
+	check_path(game->p_y, game->p_x, game);
 	return (check_path_check(game->matriz, game));
 }
 
@@ -134,6 +135,6 @@ int	check_path_check(char **matriz, t_game *game)
 		}
 	}
 	if (i != game->food || game->p != 1 || game->e != 1)
-		return (0);
+		return (3);
 	return (1);
 }

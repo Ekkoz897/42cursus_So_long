@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 18:41:53 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:27:33 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,19 @@ int	main(int argc, char **argv)
 
 int	game_start(t_game *game)
 {
-	check_path(game->p_y, game->p_x, game);
-	if (wall_check(game))
+	if (wall_check(game) == 1)
 	{
 		write(1, "\nThe map is valid, launching game...\n\n", 38);
 		write(1, "------------------\n\n", 20);
 	}
+	else if (wall_check(game) == 0)
+	{
+		write(1, "\nError\nThe map has gaps in the outside walls.\n\n", 48);
+		return (0);
+	}
 	else
 	{
-		write(1, "\nError\nThe player can't access all the collectibles.\n\n", 55);
+		write(1, "\nError\nThe player can't access all the collectibles\n\n", 54);
 		return (0);
 	}
 	open_wdw(game);
