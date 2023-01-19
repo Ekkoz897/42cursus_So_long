@@ -8,7 +8,7 @@ RM = rm -f
 
 FLAGS = -Wall -Werror -Wextra
 
-SRC = map_check.c main.c keys.c utils.c window.c animations.c game_lost.c
+SRC = map_check.c main.c keys.c utils.c window.c animations.c end_screens.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 

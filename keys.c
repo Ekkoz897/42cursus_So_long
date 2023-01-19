@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 18:31:10 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:53:04 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ int	p_move(t_game *game)
 			count++;
 		exit_check(game);
 		enemy_check(game);
-		mlx_string_put(game->mlx, game->wdw,
-			(((game->large - 2) * 64) - 32),
+		mlx_string_put(game->mlx, game->wdw, (((game->large - 2) * 64) - 32),
 			(game->tall * 64) - 26, 0x000000, "NUMBER OF MOVEMENTS : ");
 		mlx_string_put(game->mlx, game->wdw,
 			(((game->large - 2) * 64) + 100),
