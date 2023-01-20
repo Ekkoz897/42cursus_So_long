@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/20 12:45:51 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:37:05 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	if (!ft_strstr(argv[1] + ft_strlen2(argv[1]) - 4, ".ber"))
+	if (ft_strlen2(argv[1]) < 4 || !ft_strstr(argv[1] + ft_strlen2(argv[1]) - 4,
+			".ber"))
 	{
 		write(1, "\nError\nThe map file doesn't have the .ber extension\n\n", 54);
 		return (0);
