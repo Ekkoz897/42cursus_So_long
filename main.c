@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 20:11:26 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:45:51 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	*ft_strstr(const char *str, const char *word)
 		j = 0;
 		while (str[i + j] == word[j])
 		{
-			if (word[j + 1] == '\0')
+			if (word[j + 1] == '\0' && str[j + 1] == '\0')
 				return ((char *)&(str[i]));
 			j++;
 		}
