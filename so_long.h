@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 20:08:32 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:12:34 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ int		end_game(t_game *game);
 // Post game display loss
 void	enemy_check(t_game *game);
 void	display_loss(t_game game);
-
 
 #endif
