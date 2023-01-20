@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	if (!ft_strstr(argv[1], ".ber"))
+	if (!ft_strstr(argv[1] + ft_strlen2(argv[1]) - 4, ".ber"))
 	{
 		write(1, "\nError\nThe map file doesn't have the .ber extension\n\n", 54);
 		return (0);
