@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 18:22:06 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:08:32 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	vars_init(t_game	*game);
 void	imgs_init(t_game *game);
 int		destroy_wdw(t_game *game);
 int		open_wdw(t_game *game);
+char	*ft_strstr(const char *str, const char *word);
+void	*ft_itoa(int n);
+void	destroy_images(t_game *game);
 
 // Map validaters
 char	**map_cpy(int fd, char *argv, t_game	*game);
@@ -97,7 +100,5 @@ int		end_game(t_game *game);
 void	enemy_check(t_game *game);
 void	display_loss(t_game game);
 
-void	*ft_itoa(int n);
-void	destroy_images(t_game *game);
 
 #endif

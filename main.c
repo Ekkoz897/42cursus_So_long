@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 17:48:38 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:11:26 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
+	if (!ft_strstr(argv[1], ".ber"))
+	{
+		write(1, "\nError\nThe map file doesn't have the .ber extension\n\n", 54);
+		return (0);
+	}
 	fd = open(argv[1], O_RDONLY);
 	vars_init(&game);
 	game.matriz = map_cpy(fd, argv[1], &game);
@@ -80,6 +85,28 @@ int	check_path(int x, int y, t_game *game)
 			return (1);
 		if (check_path(x - 1, y, game))
 			return (1);
+	}
+	return (0);
+}
+
+char	*ft_strstr(const char *str, const char *word)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (word[i] == '\0')
+		return ((char *)str);
+	while ((str[i]))
+	{
+		j = 0;
+		while (str[i + j] == word[j])
+		{
+			if (word[j + 1] == '\0')
+				return ((char *)&(str[i]));
+			j++;
+		}
+		i++;
 	}
 	return (0);
 }
