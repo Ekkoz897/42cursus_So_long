@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:52:45 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/19 20:12:34 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:22:04 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int		check_path_check(char **matriz, t_game *game);
 
 // Animations display and key hooks
 int		game_start(t_game *game);
-int		key_press(t_game *game);
 int		keydown(int key, t_game *game);
 int		keyup(int key, t_game *game);
 void	food_collector(t_game *game);
@@ -89,15 +88,10 @@ int		p_move(t_game *game);
 int		p_move_ifs(t_game *game);
 int		player_anim(t_game *game);
 
-// Post game display win
+// Post game display
 void	exit_check(t_game *game);
-void	close_first_window(t_game *game, int flag);
 void	display_victory(t_game game);
-int		keydown_end(int key, t_game *game);
-int		end_game(t_game *game);
-
-// Post game display loss
-void	enemy_check(t_game *game);
 void	display_loss(t_game game);
+void	enemy_check(t_game *game);
 
 #endif
