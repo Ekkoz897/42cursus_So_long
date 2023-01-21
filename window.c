@@ -6,7 +6,7 @@
 /*   By: apereira <apereira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:07:59 by apereira          #+#    #+#             */
-/*   Updated: 2023/01/20 02:24:36 by apereira         ###   ########.fr       */
+/*   Updated: 2023/01/21 10:46:33 by apereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,11 @@ void	ifs(t_game *game)
 
 void	img_to_window(t_game *game)
 {
-	unsigned long long	i;
+	int	i;
 
 	i = 0;
-	if ((game->tall < 21 && game->large < 35)
-		|| (game->tall < 10 && game->large < 40))
-		while (i < 1050000)
+	if ((game->tall < 21 && game->large < 35))
+		while (i < 1800000)
 			i++;
 	food_collector(game);
 	game->i = 0;
